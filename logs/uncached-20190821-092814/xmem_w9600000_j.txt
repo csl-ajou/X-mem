@@ -27,7 +27,7 @@ Benchmark settings:
 ---> Iterations:                      1
 ---> Starting test index:             1
 
-Working set per thread:               8589934592 B == 8388608 KB == 8192 MB (2097152 pages)
+Working set per thread:               9830400000 B == 9600000 KB == 9375 MB (2400000 pages)
 
 This binary was built for the following OS and architecture capabilities: 
 GNU/Linux
@@ -119,13 +119,13 @@ Locking to logical CPU 30...Pass      Unlocking...Pass
 Locking to logical CPU 31...Pass      Unlocking...Pass
 
 Initializing timer...done
-Calculated timer frequency: 1000006000 Hz == 1000.01 MHz
-Derived timer ns per tick: 0.999994
+Calculated timer frequency: 1000031000 Hz == 1000.03 MHz
+Derived timer ns per tick: 0.999969
 
-mem_arrays_[0]: 0x5630f9560d60
+mem_arrays_[0]: 0x55a1aa349d60
 
 Virtual address for memory on NUMA node 0:
-0x00007EE3624FF010 --- ALIGNED --> 0x00007EE362500000
+0x00007F1025F1C010 --- ALIGNED --> 0x00007F1025F1D000
 
 Generating benchmarks.
 
@@ -159,40 +159,40 @@ WARNING: Failed to find logical CPU 30 in NUMA node 0
 WARNING: Failed to find logical CPU 31 in NUMA node 0
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.-1! Results may not be correct.
--1! Results may not be correct.
-! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+! Results may not be correct.! Results may not be correct.WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 
-WARNING: Failed to lock thread to logical CPU 
--1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
--1WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.! Results may not be correct.
 
--1! Results may not be correct.
-Iter 1 had 27098112 passes in total across 32 threads, with 4096 bytes touched per pass:
-...clock ticks in total across 32 threads == 159789596257 (adjusted by -313532259)
-...ns in total across 32 threads == 1.59789e+11 (adjusted by -3.1353e+08)
-...sec in total across 32 threads == 159.789 (adjusted by -0.31353)
+Iter 1 had 28236800 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 159797264366 (adjusted by -320552716)
+...ns in total across 32 threads == 1.59792e+11 (adjusted by -3.20543e+08)
+...sec in total across 32 threads == 159.792 (adjusted by -0.320543)
 Stopping power measurement threads...done
 
 *** RESULTS***
 
-Iter #   0:    21198.404    MB/s
+Iter #   0:    22088.674    MB/s
 
 
-Mean: 21198.4 MB/s
-Min: 21198.4 MB/s
-25th Percentile: 21198.4 MB/s
-Median: 21198.4 MB/s
-75th Percentile: 21198.4 MB/s
-95th Percentile: 21198.4 MB/s
-99th Percentile: 21198.4 MB/s
-Max: 21198.4 MB/s
-Mode: 21198.4 MB/s
+Mean: 22088.7 MB/s
+Min: 22088.7 MB/s
+25th Percentile: 22088.7 MB/s
+Median: 22088.7 MB/s
+75th Percentile: 22088.7 MB/s
+95th Percentile: 22088.7 MB/s
+99th Percentile: 22088.7 MB/s
+Max: 22088.7 MB/s
+Mode: 22088.7 MB/s
 
 
 
@@ -223,42 +223,42 @@ WARNING: Failed to find logical CPU 28 in NUMA node 0
 WARNING: Failed to find logical CPU 29 in NUMA node 0
 WARNING: Failed to find logical CPU 30 in NUMA node 0
 WARNING: Failed to find logical CPU 31 in NUMA node 0
-WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1-1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
--1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
--1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 ! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
--1! Results may not be correct.
-! Results may not be correct.
-Iter 1 had 9229312 passes in total across 32 threads, with 4096 bytes touched per pass:
-...clock ticks in total across 32 threads == 160326076064 (adjusted by -111688853)
-...ns in total across 32 threads == 1.60325e+11 (adjusted by -1.11688e+08)
-...sec in total across 32 threads == 160.325 (adjusted by -0.111688)
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 1 had 7576576 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 160848024859 (adjusted by -88425995)
+...ns in total across 32 threads == 1.60843e+11 (adjusted by -8.84232e+07)
+...sec in total across 32 threads == 160.843 (adjusted by -0.0884232)
 Stopping power measurement threads...done
 
 *** RESULTS***
 
-Iter #   0:    7195.779    MB/s
+Iter #   0:    5888.176    MB/s
 
 
-Mean: 7195.78 MB/s
-Min: 7195.78 MB/s
-25th Percentile: 7195.78 MB/s
-Median: 7195.78 MB/s
-75th Percentile: 7195.78 MB/s
-95th Percentile: 7195.78 MB/s
-99th Percentile: 7195.78 MB/s
-Max: 7195.78 MB/s
-Mode: 7195.78 MB/s
+Mean: 5888.18 MB/s
+Min: 5888.18 MB/s
+25th Percentile: 5888.18 MB/s
+Median: 5888.18 MB/s
+75th Percentile: 5888.18 MB/s
+95th Percentile: 5888.18 MB/s
+99th Percentile: 5888.18 MB/s
+Max: 5888.18 MB/s
+Mode: 5888.18 MB/s
 
 
 
@@ -353,7 +353,8 @@ WARNING: Failed to find logical CPU 28 in NUMA node 0
 WARNING: Failed to find logical CPU 29 in NUMA node 0
 WARNING: Failed to find logical CPU 30 in NUMA node 0
 WARNING: Failed to find logical CPU 31 in NUMA node 0
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
@@ -363,32 +364,31 @@ WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 -1! Results may not be correct.
--1! Results may not be correct.
-Iter 1 had 172032 passes in total across 32 threads, with 4096 bytes touched per pass:
-...clock ticks in total across 32 threads == 187485534945 (adjusted by -673374)
-...ns in total across 32 threads == 1.87484e+11 (adjusted by -673370)
-...sec in total across 32 threads == 187.484 (adjusted by -0.00067337)
+! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+! Results may not be correct.
+Iter 1 had 219136 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 180441388445 (adjusted by -1138836)
+...ns in total across 32 threads == 1.80436e+11 (adjusted by -1.1388e+06)
+...sec in total across 32 threads == 180.436 (adjusted by -0.0011388)
 Stopping power measurement threads...done
 
 *** RESULTS***
 
-Iter #   0:    114.698    MB/s
+Iter #   0:    151.810    MB/s
 
 
-Mean: 114.698 MB/s
-Min: 114.698 MB/s
-25th Percentile: 114.698 MB/s
-Median: 114.698 MB/s
-75th Percentile: 114.698 MB/s
-95th Percentile: 114.698 MB/s
-99th Percentile: 114.698 MB/s
-Max: 114.698 MB/s
-Mode: 114.698 MB/s
+Mean: 151.81 MB/s
+Min: 151.81 MB/s
+25th Percentile: 151.81 MB/s
+Median: 151.81 MB/s
+75th Percentile: 151.81 MB/s
+95th Percentile: 151.81 MB/s
+99th Percentile: 151.81 MB/s
+Max: 151.81 MB/s
+Mode: 151.81 MB/s
 
 
 
@@ -484,41 +484,41 @@ WARNING: Failed to find logical CPU 29 in NUMA node 0
 WARNING: Failed to find logical CPU 30 in NUMA node 0
 WARNING: Failed to find logical CPU 31 in NUMA node 0
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
--1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-Iter 1 had 143360 passes in total across 32 threads, with 4096 bytes touched per pass:
-...clock ticks in total across 32 threads == 186430506430 (adjusted by -651412)
-...ns in total across 32 threads == 1.86429e+11 (adjusted by -651408)
-...sec in total across 32 threads == 186.429 (adjusted by -0.000651408)
+Iter 1 had 137216 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 191014258374 (adjusted by -1966127)
+...ns in total across 32 threads == 1.91008e+11 (adjusted by -1.96607e+06)
+...sec in total across 32 threads == 191.008 (adjusted by -0.00196607)
 Stopping power measurement threads...done
 
 *** RESULTS***
 
-Iter #   0:    96.122    MB/s
+Iter #   0:    89.797    MB/s
 
 
-Mean: 96.1222 MB/s
-Min: 96.1222 MB/s
-25th Percentile: 96.1222 MB/s
-Median: 96.1222 MB/s
-75th Percentile: 96.1222 MB/s
-95th Percentile: 96.1222 MB/s
-99th Percentile: 96.1222 MB/s
-Max: 96.1222 MB/s
-Mode: 96.1222 MB/s
+Mean: 89.7971 MB/s
+Min: 89.7971 MB/s
+25th Percentile: 89.7971 MB/s
+Median: 89.7971 MB/s
+75th Percentile: 89.7971 MB/s
+95th Percentile: 89.7971 MB/s
+99th Percentile: 89.7971 MB/s
+Max: 89.7971 MB/s
+Mode: 89.7971 MB/s
 
 
 
@@ -555,47 +555,47 @@ WARNING: Failed to find logical CPU 28 in NUMA node 0
 WARNING: Failed to find logical CPU 29 in NUMA node 0
 WARNING: Failed to find logical CPU 30 in NUMA node 0
 WARNING: Failed to find logical CPU 31 in NUMA node 0
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 -1! Results may not be correct.
--1! Results may not be correct.
-Iter 1 had 2048 latency measurement passes, with 512 accesses per pass:
-...lat clock ticks == 5518920923 (adjusted by -12795)
-...lat ns == 5.51889e+09 (adjusted by -12794.9)
-...lat sec == 5.51889 (adjusted by -1.27949e-05)
-Iter 1 had 28894208 total load generation passes, with 4096 bytes per pass:
-...load total clock ticks across 31 threads == 154802889306 (adjusted by -321224449)
-...load total ns across 31 threads == 1.54802e+11 (adjusted by -3.21223e+08)
-...load total sec across 31 threads == 154.802 (adjusted by -0.321223)
+Iter 1 had 5120 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5096818624 (adjusted by -28237)
+...lat ns == 5.09666e+09 (adjusted by -28236.1)
+...lat sec == 5.09666 (adjusted by -2.82361e-05)
+Iter 1 had 26821632 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 154855540822 (adjusted by -286436708)
+...load total ns across 31 threads == 1.54851e+11 (adjusted by -2.86428e+08)
+...load total sec across 31 threads == 154.851 (adjusted by -0.286428)
 
 Stopping power measurement threads...done
 
 *** RESULTS***
 
-Iter #   0:    5263.221 ns/access @    22602.479 MB/s mean self-imposed load
+Iter #   0:    1944.222 ns/access @    20974.599 MB/s mean self-imposed load
 
 
-Mean: 5263.22 ns/access and 22602.5 MB/s mean imposed load (not necessarily matched)
-Min: 5263.22 ns/access
-25th Percentile: 5263.22 ns/access
-Median: 5263.22 ns/access
-75th Percentile: 5263.22 ns/access
-95th Percentile: 5263.22 ns/access
-99th Percentile: 5263.22 ns/access
-Max: 5263.22 ns/access
-Mode: 5263.22 ns/access
+Mean: 1944.22 ns/access and 20974.6 MB/s mean imposed load (not necessarily matched)
+Min: 1944.22 ns/access
+25th Percentile: 1944.22 ns/access
+Median: 1944.22 ns/access
+75th Percentile: 1944.22 ns/access
+95th Percentile: 1944.22 ns/access
+99th Percentile: 1944.22 ns/access
+Max: 1944.22 ns/access
+Mode: 1944.22 ns/access
 
 
 
@@ -639,38 +639,38 @@ WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to 
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
--1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
--1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-Iter 1 had 2048 latency measurement passes, with 512 accesses per pass:
-...lat clock ticks == 5191194662 (adjusted by -8103)
-...lat ns == 5.19116e+09 (adjusted by -8102.95)
-...lat sec == 5.19116 (adjusted by -8.10295e-06)
-Iter 1 had 10762240 total load generation passes, with 4096 bytes per pass:
-...load total clock ticks across 31 threads == 155250679698 (adjusted by -127230942)
-...load total ns across 31 threads == 1.5525e+11 (adjusted by -1.2723e+08)
-...load total sec across 31 threads == 155.25 (adjusted by -0.12723)
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+-1! Results may not be correct.
+Iter 1 had 6912 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5153673621 (adjusted by -14260)
+...lat ns == 5.15351e+09 (adjusted by -14259.6)
+...lat sec == 5.15351 (adjusted by -1.42596e-05)
+Iter 1 had 7249920 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 155469912326 (adjusted by -84360326)
+...load total ns across 31 threads == 1.55465e+11 (adjusted by -8.43577e+07)
+...load total sec across 31 threads == 155.465 (adjusted by -0.0843577)
 
 Stopping power measurement threads...done
 
 *** RESULTS***
 
-Iter #   0:    4950.679 ns/access @    8394.474 MB/s mean self-imposed load
+Iter #   0:    1456.229 ns/access @    5647.056 MB/s mean self-imposed load
 
 
-Mean: 4950.68 ns/access and 8394.47 MB/s mean imposed load (not necessarily matched)
-Min: 4950.68 ns/access
-25th Percentile: 4950.68 ns/access
-Median: 4950.68 ns/access
-75th Percentile: 4950.68 ns/access
-95th Percentile: 4950.68 ns/access
-99th Percentile: 4950.68 ns/access
-Max: 4950.68 ns/access
-Mode: 4950.68 ns/access
+Mean: 1456.23 ns/access and 5647.06 MB/s mean imposed load (not necessarily matched)
+Min: 1456.23 ns/access
+25th Percentile: 1456.23 ns/access
+Median: 1456.23 ns/access
+75th Percentile: 1456.23 ns/access
+95th Percentile: 1456.23 ns/access
+99th Percentile: 1456.23 ns/access
+Max: 1456.23 ns/access
+Mode: 1456.23 ns/access
 
 
 
@@ -769,12 +769,6 @@ WARNING: Failed to find logical CPU 30 in NUMA node 0
 WARNING: Failed to find logical CPU 31 in NUMA node 0
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
@@ -782,32 +776,38 @@ WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to 
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 -1! Results may not be correct.
-Iter 1 had 3840 latency measurement passes, with 512 accesses per pass:
-...lat clock ticks == 5041221684 (adjusted by -7328)
-...lat ns == 5.04119e+09 (adjusted by -7327.96)
-...lat sec == 5.04119 (adjusted by -7.32796e-06)
-Iter 1 had 180224 total load generation passes, with 4096 bytes per pass:
-...load total clock ticks across 31 threads == 176486796712 (adjusted by -710064)
-...load total ns across 31 threads == 1.76486e+11 (adjusted by -710060)
-...load total sec across 31 threads == 176.486 (adjusted by -0.00071006)
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 1 had 6144 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5023028339 (adjusted by -51925)
+...lat ns == 5.02287e+09 (adjusted by -51923.4)
+...lat sec == 5.02287 (adjusted by -5.19234e-05)
+Iter 1 had 203776 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 175133517937 (adjusted by -1045749)
+...load total ns across 31 threads == 1.75128e+11 (adjusted by -1.04572e+06)
+...load total sec across 31 threads == 175.128 (adjusted by -0.00104572)
 
 Stopping power measurement threads...done
 
 *** RESULTS***
 
-Iter #   0:    2564.083 ns/access @    123.659 MB/s mean self-imposed load
+Iter #   0:    1596.728 ns/access @    140.903 MB/s mean self-imposed load
 
 
-Mean: 2564.08 ns/access and 123.659 MB/s mean imposed load (not necessarily matched)
-Min: 2564.08 ns/access
-25th Percentile: 2564.08 ns/access
-Median: 2564.08 ns/access
-75th Percentile: 2564.08 ns/access
-95th Percentile: 2564.08 ns/access
-99th Percentile: 2564.08 ns/access
-Max: 2564.08 ns/access
-Mode: 2564.08 ns/access
+Mean: 1596.73 ns/access and 140.903 MB/s mean imposed load (not necessarily matched)
+Min: 1596.73 ns/access
+25th Percentile: 1596.73 ns/access
+Median: 1596.73 ns/access
+75th Percentile: 1596.73 ns/access
+95th Percentile: 1596.73 ns/access
+99th Percentile: 1596.73 ns/access
+Max: 1596.73 ns/access
+Mode: 1596.73 ns/access
 
 
 
@@ -905,46 +905,46 @@ WARNING: Failed to find logical CPU 29 in NUMA node 0
 WARNING: Failed to find logical CPU 30 in NUMA node 0
 WARNING: Failed to find logical CPU 31 in NUMA node 0
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1-1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 ! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
--1! Results may not be correct.
--1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-Iter 1 had 1024 latency measurement passes, with 512 accesses per pass:
-...lat clock ticks == 5257872184 (adjusted by -3391)
-...lat ns == 5.25784e+09 (adjusted by -3390.98)
-...lat sec == 5.25784 (adjusted by -3.39098e-06)
-Iter 1 had 141312 total load generation passes, with 4096 bytes per pass:
-...load total clock ticks across 31 threads == 182588439798 (adjusted by -744281)
-...load total ns across 31 threads == 1.82587e+11 (adjusted by -744276)
-...load total sec across 31 threads == 182.587 (adjusted by -0.000744277)
+Iter 1 had 2048 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5612597271 (adjusted by -7668)
+...lat ns == 5.61242e+09 (adjusted by -7667.76)
+...lat sec == 5.61242 (adjusted by -7.66776e-06)
+Iter 1 had 134144 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 208694651096 (adjusted by -1729638)
+...load total ns across 31 threads == 2.08688e+11 (adjusted by -1.72958e+06)
+...load total sec across 31 threads == 208.688 (adjusted by -0.00172958)
 
 Stopping power measurement threads...done
 
 *** RESULTS***
 
-Iter #   0:    10028.535 ns/access @    93.720 MB/s mean self-imposed load
+Iter #   0:    5352.424 ns/access @    77.839 MB/s mean self-imposed load
 
 
-Mean: 10028.5 ns/access and 93.7195 MB/s mean imposed load (not necessarily matched)
-Min: 10028.5 ns/access
-25th Percentile: 10028.5 ns/access
-Median: 10028.5 ns/access
-75th Percentile: 10028.5 ns/access
-95th Percentile: 10028.5 ns/access
-99th Percentile: 10028.5 ns/access
-Max: 10028.5 ns/access
-Mode: 10028.5 ns/access
+Mean: 5352.42 ns/access and 77.8386 MB/s mean imposed load (not necessarily matched)
+Min: 5352.42 ns/access
+25th Percentile: 5352.42 ns/access
+Median: 5352.42 ns/access
+75th Percentile: 5352.42 ns/access
+95th Percentile: 5352.42 ns/access
+99th Percentile: 5352.42 ns/access
+Max: 5352.42 ns/access
+Mode: 5352.42 ns/access
 
 
 
