@@ -24,7 +24,7 @@ Benchmark settings:
 ------> CPU NUMA node affinities:     0 
 ------> Memory NUMA node affinities:  0 
 ---> Large pages:                     no
----> Iterations:                      1
+---> Iterations:                      5
 ---> Starting test index:             1
 
 Working set per thread:               536870912 B == 524288 KB == 512 MB (131072 pages)
@@ -119,13 +119,13 @@ Locking to logical CPU 30...Pass      Unlocking...Pass
 Locking to logical CPU 31...Pass      Unlocking...Pass
 
 Initializing timer...done
-Calculated timer frequency: 1000025000 Hz == 1000.02 MHz
-Derived timer ns per tick: 0.999975
+Calculated timer frequency: 1000037000 Hz == 1000.04 MHz
+Derived timer ns per tick: 0.999963
 
-mem_arrays_[0]: 0x56398f7e9e60
+mem_arrays_[0]: 0x5626fa4f7e60
 
 Virtual address for memory on NUMA node 0:
-0x00007FC5B4C6B010 --- ALIGNED --> 0x00007FC5B4C6C000
+0x00007F65C653A010 --- ALIGNED --> 0x00007F65C653B000
 
 Generating benchmarks.
 
@@ -157,6 +157,117 @@ WARNING: Failed to find logical CPU 28 in NUMA node 0
 WARNING: Failed to find logical CPU 29 in NUMA node 0
 WARNING: Failed to find logical CPU 30 in NUMA node 0
 WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+-1! Results may not be correct.
+Iter 1 had 58264576 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 159352820297 (adjusted by -675929613)
+...ns in total across 32 threads == 1.59347e+11 (adjusted by -6.75905e+08)
+...sec in total across 32 threads == 159.347 (adjusted by -0.675905)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.-1! Results may not be correct.
+
+-1! Results may not be correct.
+Iter 2 had 91701248 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 159039687519 (adjusted by -983878945)
+...ns in total across 32 threads == 1.59034e+11 (adjusted by -9.83843e+08)
+...sec in total across 32 threads == 159.034 (adjusted by -0.983843)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+! Results may not be correct.WARNING: Failed to lock thread to logical CPU -1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU 
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 3 had 85907456 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 159003067424 (adjusted by -1032602638)
+...ns in total across 32 threads == 1.58997e+11 (adjusted by -1.03256e+09)
+...sec in total across 32 threads == 158.997 (adjusted by -1.03256)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
@@ -166,33 +277,70 @@ WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.-1! Results may not be correct.
+
+! Results may not be correct.
+-1! Results may not be correct.
+Iter 4 had 101624832 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 158875308305 (adjusted by -1145897432)
+...ns in total across 32 threads == 1.58869e+11 (adjusted by -1.14586e+09)
+...sec in total across 32 threads == 158.869 (adjusted by -1.14586)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
--1! Results may not be correct.
--1! Results may not be correct.
-Iter 1 had 52973568 passes in total across 32 threads, with 4096 bytes touched per pass:
-...clock ticks in total across 32 threads == 159383111898 (adjusted by -657819310)
-...ns in total across 32 threads == 1.59379e+11 (adjusted by -6.57803e+08)
-...sec in total across 32 threads == 159.379 (adjusted by -0.657803)
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 5 had 86863872 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 158966843989 (adjusted by -1055948129)
+...ns in total across 32 threads == 1.58961e+11 (adjusted by -1.05591e+09)
+...sec in total across 32 threads == 158.961 (adjusted by -1.05591)
 Stopping power measurement threads...done
 
 *** RESULTS***
 
-Iter #   0:    41546.822    MB/s
+Iter #   0:    45705.756    MB/s
+Iter #   1:    72076.849    MB/s
+Iter #   2:    67538.501    MB/s
+Iter #   3:    79959.395    MB/s
+Iter #   4:    68305.975    MB/s
 
 
-Mean: 41546.8 MB/s
-Min: 41546.8 MB/s
-25th Percentile: 41546.8 MB/s
-Median: 41546.8 MB/s
-75th Percentile: 41546.8 MB/s
-95th Percentile: 41546.8 MB/s
-99th Percentile: 41546.8 MB/s
-Max: 41546.8 MB/s
-Mode: 41546.8 MB/s
+Mean: 66717.3 MB/s
+Min: 45705.8 MB/s
+25th Percentile: 67538.5 MB/s
+Median: 68306 MB/s
+75th Percentile: 72076.8 MB/s
+95th Percentile: 79959.4 MB/s
+99th Percentile: 79959.4 MB/s
+Max: 79959.4 MB/s
+Mode: 79959.4 MB/s
 
 
 
@@ -223,10 +371,49 @@ WARNING: Failed to find logical CPU 28 in NUMA node 0
 WARNING: Failed to find logical CPU 29 in NUMA node 0
 WARNING: Failed to find logical CPU 30 in NUMA node 0
 WARNING: Failed to find logical CPU 31 in NUMA node 0
-WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 1 had 42215424 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 159543868521 (adjusted by -494098485)
+...ns in total across 32 threads == 1.59538e+11 (adjusted by -4.9408e+08)
+...sec in total across 32 threads == 159.538 (adjusted by -0.49408)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
@@ -235,30 +422,139 @@ WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 2 had 41917440 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 159552737932 (adjusted by -487705191)
+...ns in total across 32 threads == 1.59547e+11 (adjusted by -4.87687e+08)
+...sec in total across 32 threads == 159.547 (adjusted by -0.487687)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
--1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 3 had 43925504 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 159550926908 (adjusted by -487936296)
+...ns in total across 32 threads == 1.59545e+11 (adjusted by -4.87918e+08)
+...sec in total across 32 threads == 159.545 (adjusted by -0.487918)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 ! Results may not be correct.
 -1! Results may not be correct.
-Iter 1 had 19264512 passes in total across 32 threads, with 4096 bytes touched per pass:
-...clock ticks in total across 32 threads == 159862157797 (adjusted by -228483082)
-...ns in total across 32 threads == 1.59858e+11 (adjusted by -2.28477e+08)
-...sec in total across 32 threads == 159.858 (adjusted by -0.228477)
+Iter 4 had 41932800 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 159538608375 (adjusted by -497276009)
+...ns in total across 32 threads == 1.59533e+11 (adjusted by -4.97258e+08)
+...sec in total across 32 threads == 159.533 (adjusted by -0.497258)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+-1! Results may not be correct.
+! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 5 had 42070016 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 159544246913 (adjusted by -500334871)
+...ns in total across 32 threads == 1.59538e+11 (adjusted by -5.00316e+08)
+...sec in total across 32 threads == 159.538 (adjusted by -0.500316)
 Stopping power measurement threads...done
 
 *** RESULTS***
 
-Iter #   0:    15063.754    MB/s
+Iter #   0:    33076.314    MB/s
+Iter #   1:    32841.014    MB/s
+Iter #   2:    34414.660    MB/s
+Iter #   3:    32855.957    MB/s
+Iter #   4:    32962.306    MB/s
 
 
-Mean: 15063.8 MB/s
-Min: 15063.8 MB/s
-25th Percentile: 15063.8 MB/s
-Median: 15063.8 MB/s
-75th Percentile: 15063.8 MB/s
-95th Percentile: 15063.8 MB/s
-99th Percentile: 15063.8 MB/s
-Max: 15063.8 MB/s
-Mode: 15063.8 MB/s
+Mean: 33230.1 MB/s
+Min: 32841 MB/s
+25th Percentile: 32856 MB/s
+Median: 32962.3 MB/s
+75th Percentile: 33076.3 MB/s
+95th Percentile: 34414.7 MB/s
+99th Percentile: 34414.7 MB/s
+Max: 34414.7 MB/s
+Mode: 34414.7 MB/s
 
 
 
@@ -358,37 +654,185 @@ WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
--1WARNING: Failed to lock thread to logical CPU ! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 -1! Results may not be correct.
-Iter 1 had 2155520 passes in total across 32 threads, with 4096 bytes touched per pass:
-...clock ticks in total across 32 threads == 161325467718 (adjusted by -3276256)
-...ns in total across 32 threads == 1.61321e+11 (adjusted by -3.27617e+06)
-...sec in total across 32 threads == 161.321 (adjusted by -0.00327617)
+-1! Results may not be correct.
+Iter 1 had 2626560 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 160916638308 (adjusted by -4008462)
+...ns in total across 32 threads == 1.60911e+11 (adjusted by -4.00831e+06)
+...sec in total across 32 threads == 160.911 (adjusted by -0.00400831)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+! Results may not be correct.
+Iter 2 had 2643968 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 160883102756 (adjusted by -3959730)
+...ns in total across 32 threads == 1.60877e+11 (adjusted by -3.95958e+06)
+...sec in total across 32 threads == 160.877 (adjusted by -0.00395958)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 3 had 2603008 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 160854133917 (adjusted by -3921926)
+...ns in total across 32 threads == 1.60848e+11 (adjusted by -3.92178e+06)
+...sec in total across 32 threads == 160.848 (adjusted by -0.00392178)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+Iter 4 had 2565120 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 160714540958 (adjusted by -3731512)
+...ns in total across 32 threads == 1.60709e+11 (adjusted by -3.73137e+06)
+...sec in total across 32 threads == 160.709 (adjusted by -0.00373137)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+-1! Results may not be correct.
+Iter 5 had 2603008 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 160814601057 (adjusted by -3824933)
+...ns in total across 32 threads == 1.60809e+11 (adjusted by -3.82479e+06)
+...sec in total across 32 threads == 160.809 (adjusted by -0.00382479)
 Stopping power measurement threads...done
 
 *** RESULTS***
 
-Iter #   0:    1670.206    MB/s
+Iter #   0:    2040.386    MB/s
+Iter #   1:    2054.338    MB/s
+Iter #   2:    2022.876    MB/s
+Iter #   3:    1995.164    MB/s
+Iter #   4:    2023.374    MB/s
 
 
-Mean: 1670.21 MB/s
-Min: 1670.21 MB/s
-25th Percentile: 1670.21 MB/s
-Median: 1670.21 MB/s
-75th Percentile: 1670.21 MB/s
-95th Percentile: 1670.21 MB/s
-99th Percentile: 1670.21 MB/s
-Max: 1670.21 MB/s
-Mode: 1670.21 MB/s
+Mean: 2027.23 MB/s
+Min: 1995.16 MB/s
+25th Percentile: 2022.88 MB/s
+Median: 2023.37 MB/s
+75th Percentile: 2040.39 MB/s
+95th Percentile: 2054.34 MB/s
+99th Percentile: 2054.34 MB/s
+Max: 2054.34 MB/s
+Mode: 2054.34 MB/s
 
 
 
@@ -483,7 +927,43 @@ WARNING: Failed to find logical CPU 28 in NUMA node 0
 WARNING: Failed to find logical CPU 29 in NUMA node 0
 WARNING: Failed to find logical CPU 30 in NUMA node 0
 WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 1 had 2284544 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 161109637575 (adjusted by -3446493)
+...ns in total across 32 threads == 1.61104e+11 (adjusted by -3.44637e+06)
+...sec in total across 32 threads == 161.104 (adjusted by -0.00344637)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
@@ -496,29 +976,141 @@ WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+Iter 2 had 2443264 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 161125152421 (adjusted by -3678969)
+...ns in total across 32 threads == 1.61119e+11 (adjusted by -3.67883e+06)
+...sec in total across 32 threads == 161.119 (adjusted by -0.00367883)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+-1! Results may not be correct.
+Iter 3 had 2443264 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 161112013463 (adjusted by -3584917)
+...ns in total across 32 threads == 1.61106e+11 (adjusted by -3.58478e+06)
+...sec in total across 32 threads == 161.106 (adjusted by -0.00358478)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+! Results may not be correct.
+-1! Results may not be correct.
 -1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 ! Results may not be correct.
+Iter 4 had 2442240 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 161056220967 (adjusted by -3577700)
+...ns in total across 32 threads == 1.6105e+11 (adjusted by -3.57757e+06)
+...sec in total across 32 threads == 161.05 (adjusted by -0.00357757)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-Iter 1 had 1615872 passes in total across 32 threads, with 4096 bytes touched per pass:
-...clock ticks in total across 32 threads == 161210187518 (adjusted by -2447660)
-...ns in total across 32 threads == 1.61206e+11 (adjusted by -2.4476e+06)
-...sec in total across 32 threads == 161.206 (adjusted by -0.0024476)
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+Iter 5 had 2441216 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 160969287039 (adjusted by -3717215)
+...ns in total across 32 threads == 1.60963e+11 (adjusted by -3.71708e+06)
+...sec in total across 32 threads == 160.963 (adjusted by -0.00371708)
 Stopping power measurement threads...done
 
 *** RESULTS***
 
-Iter #   0:    1252.955    MB/s
+Iter #   0:    1772.573    MB/s
+Iter #   1:    1895.541    MB/s
+Iter #   2:    1895.695    MB/s
+Iter #   3:    1895.557    MB/s
+Iter #   4:    1895.786    MB/s
 
 
-Mean: 1252.95 MB/s
-Min: 1252.95 MB/s
-25th Percentile: 1252.95 MB/s
-Median: 1252.95 MB/s
-75th Percentile: 1252.95 MB/s
-95th Percentile: 1252.95 MB/s
-99th Percentile: 1252.95 MB/s
-Max: 1252.95 MB/s
-Mode: 1252.95 MB/s
+Mean: 1871.03 MB/s
+Min: 1772.57 MB/s
+25th Percentile: 1895.54 MB/s
+Median: 1895.56 MB/s
+75th Percentile: 1895.7 MB/s
+95th Percentile: 1895.79 MB/s
+99th Percentile: 1895.79 MB/s
+Max: 1895.79 MB/s
+Mode: 1895.79 MB/s
 
 
 
@@ -555,47 +1147,211 @@ WARNING: Failed to find logical CPU 28 in NUMA node 0
 WARNING: Failed to find logical CPU 29 in NUMA node 0
 WARNING: Failed to find logical CPU 30 in NUMA node 0
 WARNING: Failed to find logical CPU 31 in NUMA node 0
-WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 1 had 17152 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5016725622 (adjusted by -29953)
+...lat ns == 5.01654e+09 (adjusted by -29951.9)
+...lat sec == 5.01654 (adjusted by -2.99519e-05)
+Iter 1 had 86280192 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 153966090560 (adjusted by -1055787853)
+...load total ns across 31 threads == 1.5396e+11 (adjusted by -1.05575e+09)
+...load total sec across 31 threads == 153.96 (adjusted by -1.05575)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 2 had 17920 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5011115248 (adjusted by -31014)
+...lat ns == 5.01093e+09 (adjusted by -31012.9)
+...lat sec == 5.01093 (adjusted by -3.10129e-05)
+Iter 2 had 86029312 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 153953110926 (adjusted by -1069143260)
+...load total ns across 31 threads == 1.53947e+11 (adjusted by -1.0691e+09)
+...load total sec across 31 threads == 153.947 (adjusted by -1.0691)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1-1! Results may not be correct.WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
--1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 3 had 17664 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5005035200 (adjusted by -30840)
+...lat ns == 5.00485e+09 (adjusted by -30838.9)
+...lat sec == 5.00485 (adjusted by -3.08389e-05)
+Iter 3 had 88971264 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 153998660683 (adjusted by -1021716464)
+...load total ns across 31 threads == 1.53993e+11 (adjusted by -1.02168e+09)
+...load total sec across 31 threads == 153.993 (adjusted by -1.02168)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 ! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 4 had 17920 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5010510236 (adjusted by -30778)
+...lat ns == 5.01032e+09 (adjusted by -30776.9)
+...lat sec == 5.01032 (adjusted by -3.07769e-05)
+Iter 4 had 86171648 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 153949207816 (adjusted by -1071833793)
+...load total ns across 31 threads == 1.53944e+11 (adjusted by -1.07179e+09)
+...load total sec across 31 threads == 153.944 (adjusted by -1.07179)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 
-Iter 1 had 9728 latency measurement passes, with 512 accesses per pass:
-...lat clock ticks == 5024672763 (adjusted by -17597)
-...lat ns == 5.02455e+09 (adjusted by -17596.6)
-...lat sec == 5.02455 (adjusted by -1.75966e-05)
-Iter 1 had 46783488 total load generation passes, with 4096 bytes per pass:
-...load total clock ticks across 31 threads == 154463438387 (adjusted by -568722902)
-...load total ns across 31 threads == 1.5446e+11 (adjusted by -5.68709e+08)
-...load total sec across 31 threads == 154.46 (adjusted by -0.568709)
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 5 had 17920 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5012939011 (adjusted by -30815)
+...lat ns == 5.01275e+09 (adjusted by -30813.9)
+...lat sec == 5.01275 (adjusted by -3.08139e-05)
+Iter 5 had 86298624 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 153962231312 (adjusted by -1059718936)
+...load total ns across 31 threads == 1.53957e+11 (adjusted by -1.05968e+09)
+...load total sec across 31 threads == 153.957 (adjusted by -1.05968)
 
 Stopping power measurement threads...done
 
 *** RESULTS***
 
-Iter #   0:    1008.796 ns/access @    36677.481 MB/s mean self-imposed load
+Iter #   0:    571.241 ns/access @    67861.554 MB/s mean self-imposed load
+Iter #   1:    546.148 ns/access @    67669.935 MB/s mean self-imposed load
+Iter #   2:    553.391 ns/access @    69963.350 MB/s mean self-imposed load
+Iter #   3:    546.082 ns/access @    67783.614 MB/s mean self-imposed load
+Iter #   4:    546.347 ns/access @    67877.752 MB/s mean self-imposed load
 
 
-Mean: 1008.8 ns/access and 36677.5 MB/s mean imposed load (not necessarily matched)
-Min: 1008.8 ns/access
-25th Percentile: 1008.8 ns/access
-Median: 1008.8 ns/access
-75th Percentile: 1008.8 ns/access
-95th Percentile: 1008.8 ns/access
-99th Percentile: 1008.8 ns/access
-Max: 1008.8 ns/access
-Mode: 1008.8 ns/access
+Mean: 552.642 ns/access and 68231.2 MB/s mean imposed load (not necessarily matched)
+Min: 546.082 ns/access
+25th Percentile: 546.148 ns/access
+Median: 546.347 ns/access
+75th Percentile: 553.391 ns/access
+95th Percentile: 571.241 ns/access
+99th Percentile: 571.241 ns/access
+Max: 571.241 ns/access
+Mode: 571.241 ns/access
 
 
 
@@ -630,6 +1386,167 @@ WARNING: Failed to find logical CPU 28 in NUMA node 0
 WARNING: Failed to find logical CPU 29 in NUMA node 0
 WARNING: Failed to find logical CPU 30 in NUMA node 0
 WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 1 had 17408 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5015817276 (adjusted by -30122)
+...lat ns == 5.01563e+09 (adjusted by -30120.9)
+...lat sec == 5.01563 (adjusted by -3.01209e-05)
+Iter 1 had 41462784 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 154557043284 (adjusted by -493406666)
+...load total ns across 31 threads == 1.54551e+11 (adjusted by -4.93388e+08)
+...load total sec across 31 threads == 154.551 (adjusted by -0.493388)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+-1! Results may not be correct.
+Iter 2 had 17408 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5011073297 (adjusted by -30497)
+...lat ns == 5.01089e+09 (adjusted by -30495.9)
+...lat sec == 5.01089 (adjusted by -3.04959e-05)
+Iter 2 had 41037824 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 154551648004 (adjusted by -489667480)
+...load total ns across 31 threads == 1.54546e+11 (adjusted by -4.89649e+08)
+...load total sec across 31 threads == 154.546 (adjusted by -0.489649)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 3 had 17408 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5008731129 (adjusted by -30768)
+...lat ns == 5.00855e+09 (adjusted by -30766.9)
+...lat sec == 5.00855 (adjusted by -3.07669e-05)
+Iter 3 had 41081856 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 154550733359 (adjusted by -488185475)
+...load total ns across 31 threads == 1.54545e+11 (adjusted by -4.88167e+08)
+...load total sec across 31 threads == 154.545 (adjusted by -0.488167)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 4 had 16384 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5007963128 (adjusted by -29070)
+...lat ns == 5.00778e+09 (adjusted by -29068.9)
+...lat sec == 5.00778 (adjusted by -2.90689e-05)
+Iter 4 had 41186304 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 154557580214 (adjusted by -486869972)
+...load total ns across 31 threads == 1.54552e+11 (adjusted by -4.86852e+08)
+...load total sec across 31 threads == 154.552 (adjusted by -0.486852)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
@@ -638,39 +1555,42 @@ WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 -1! Results may not be correct.
--1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1-1! Results may not be correct.
-WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
-! Results may not be correct.
-Iter 1 had 9984 latency measurement passes, with 512 accesses per pass:
-...lat clock ticks == 5020206200 (adjusted by -12975)
-...lat ns == 5.02008e+09 (adjusted by -12974.7)
-...lat sec == 5.02008 (adjusted by -1.29747e-05)
-Iter 1 had 19520512 total load generation passes, with 4096 bytes per pass:
-...load total clock ticks across 31 threads == 154882953588 (adjusted by -228750348)
-...load total ns across 31 threads == 1.54879e+11 (adjusted by -2.28745e+08)
-...load total sec across 31 threads == 154.879 (adjusted by -0.228745)
+Iter 5 had 17408 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5005906501 (adjusted by -30043)
+...lat ns == 5.00572e+09 (adjusted by -30041.9)
+...lat sec == 5.00572 (adjusted by -3.00419e-05)
+Iter 5 had 40769536 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 154552300748 (adjusted by -492783531)
+...load total ns across 31 threads == 1.54547e+11 (adjusted by -4.92765e+08)
+...load total sec across 31 threads == 154.547 (adjusted by -0.492765)
 
 Stopping power measurement threads...done
 
 *** RESULTS***
 
-Iter #   0:    982.056 ns/access @    15262.307 MB/s mean self-imposed load
+Iter #   0:    562.739 ns/access @    32486.838 MB/s mean self-imposed load
+Iter #   1:    562.207 ns/access @    32154.996 MB/s mean self-imposed load
+Iter #   2:    561.944 ns/access @    32189.688 MB/s mean self-imposed load
+Iter #   3:    596.974 ns/access @    32270.098 MB/s mean self-imposed load
+Iter #   4:    561.627 ns/access @    31944.645 MB/s mean self-imposed load
 
 
-Mean: 982.056 ns/access and 15262.3 MB/s mean imposed load (not necessarily matched)
-Min: 982.056 ns/access
-25th Percentile: 982.056 ns/access
-Median: 982.056 ns/access
-75th Percentile: 982.056 ns/access
-95th Percentile: 982.056 ns/access
-99th Percentile: 982.056 ns/access
-Max: 982.056 ns/access
-Mode: 982.056 ns/access
+Mean: 569.098 ns/access and 32209.3 MB/s mean imposed load (not necessarily matched)
+Min: 561.627 ns/access
+25th Percentile: 561.944 ns/access
+Median: 562.207 ns/access
+75th Percentile: 562.739 ns/access
+95th Percentile: 596.974 ns/access
+99th Percentile: 596.974 ns/access
+Max: 596.974 ns/access
+Mode: 596.974 ns/access
 
 
 
@@ -768,46 +1688,210 @@ WARNING: Failed to find logical CPU 29 in NUMA node 0
 WARNING: Failed to find logical CPU 30 in NUMA node 0
 WARNING: Failed to find logical CPU 31 in NUMA node 0
 WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+Iter 1 had 81920 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5001688091 (adjusted by -134830)
+...lat ns == 5.0015e+09 (adjusted by -134825)
+...lat sec == 5.0015 (adjusted by -0.000134825)
+Iter 1 had 2315264 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 156119368072 (adjusted by -3413775)
+...load total ns across 31 threads == 1.56114e+11 (adjusted by -3.41365e+06)
+...load total sec across 31 threads == 156.114 (adjusted by -0.00341365)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1-1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU ! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 2 had 81920 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5001492045 (adjusted by -259612)
+...lat ns == 5.00131e+09 (adjusted by -259602)
+...lat sec == 5.00131 (adjusted by -0.000259602)
+Iter 2 had 2354176 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 155906558411 (adjusted by -3439329)
+...load total ns across 31 threads == 1.55901e+11 (adjusted by -3.4392e+06)
+...load total sec across 31 threads == 155.901 (adjusted by -0.0034392)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+-1! Results may not be correct.
+-1! Results may not be correct.
+Iter 3 had 81920 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5004101537 (adjusted by -134886)
+...lat ns == 5.00392e+09 (adjusted by -134881)
+...lat sec == 5.00392 (adjusted by -0.000134881)
+Iter 3 had 2350080 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 155864758451 (adjusted by -3408280)
+...load total ns across 31 threads == 1.55859e+11 (adjusted by -3.40815e+06)
+...load total sec across 31 threads == 155.859 (adjusted by -0.00340815)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 4 had 79616 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5012387375 (adjusted by -117514)
+...lat ns == 5.0122e+09 (adjusted by -117510)
+...lat sec == 5.0122 (adjusted by -0.00011751)
+Iter 4 had 2356224 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 155940847659 (adjusted by -3410451)
+...load total ns across 31 threads == 1.55935e+11 (adjusted by -3.41032e+06)
+...load total sec across 31 threads == 155.935 (adjusted by -0.00341033)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 -1! Results may not be correct.
-Iter 1 had 55040 latency measurement passes, with 512 accesses per pass:
-...lat clock ticks == 5018194274 (adjusted by -91114)
-...lat ns == 5.01807e+09 (adjusted by -91111.7)
-...lat sec == 5.01807 (adjusted by -9.11117e-05)
-Iter 1 had 2051072 total load generation passes, with 4096 bytes per pass:
-...load total clock ticks across 31 threads == 156353996590 (adjusted by -3030844)
-...load total ns across 31 threads == 1.5635e+11 (adjusted by -3.03077e+06)
-...load total sec across 31 threads == 156.35 (adjusted by -0.00303077)
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+! Results may not be correct.
+-1! Results may not be correct.
+Iter 5 had 81920 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5004505814 (adjusted by -134438)
+...lat ns == 5.00432e+09 (adjusted by -134433)
+...lat sec == 5.00432 (adjusted by -0.000134433)
+Iter 5 had 2352128 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 155910995940 (adjusted by -3444598)
+...load total ns across 31 threads == 1.55905e+11 (adjusted by -3.44447e+06)
+...load total sec across 31 threads == 155.905 (adjusted by -0.00344447)
 
 Stopping power measurement threads...done
 
 *** RESULTS***
 
-Iter #   0:    178.069 ns/access @    1588.563 MB/s mean self-imposed load
+Iter #   0:    119.245 ns/access @    1795.897 MB/s mean self-imposed load
+Iter #   1:    119.240 ns/access @    1828.573 MB/s mean self-imposed load
+Iter #   2:    119.303 ns/access @    1825.881 MB/s mean self-imposed load
+Iter #   3:    122.958 ns/access @    1829.761 MB/s mean self-imposed load
+Iter #   4:    119.312 ns/access @    1826.930 MB/s mean self-imposed load
 
 
-Mean: 178.069 ns/access and 1588.56 MB/s mean imposed load (not necessarily matched)
-Min: 178.069 ns/access
-25th Percentile: 178.069 ns/access
-Median: 178.069 ns/access
-75th Percentile: 178.069 ns/access
-95th Percentile: 178.069 ns/access
-99th Percentile: 178.069 ns/access
-Max: 178.069 ns/access
-Mode: 178.069 ns/access
+Mean: 120.012 ns/access and 1821.41 MB/s mean imposed load (not necessarily matched)
+Min: 119.24 ns/access
+25th Percentile: 119.245 ns/access
+Median: 119.303 ns/access
+75th Percentile: 119.312 ns/access
+95th Percentile: 122.958 ns/access
+99th Percentile: 122.958 ns/access
+Max: 122.958 ns/access
+Mode: 122.958 ns/access
 
 
 
@@ -904,47 +1988,211 @@ WARNING: Failed to find logical CPU 28 in NUMA node 0
 WARNING: Failed to find logical CPU 29 in NUMA node 0
 WARNING: Failed to find logical CPU 30 in NUMA node 0
 WARNING: Failed to find logical CPU 31 in NUMA node 0
-WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+Iter 1 had 64512 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5011097055 (adjusted by -95729)
+...lat ns == 5.01091e+09 (adjusted by -95725.5)
+...lat sec == 5.01091 (adjusted by -9.57255e-05)
+Iter 1 had 1869824 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 156070073959 (adjusted by -2827196)
+...load total ns across 31 threads == 1.56064e+11 (adjusted by -2.82709e+06)
+...load total sec across 31 threads == 156.064 (adjusted by -0.00282709)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
 -1! Results may not be correct.
--1WARNING: Failed to lock thread to logical CPU -1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1-1! Results may not be correct.
+-1! Results may not be correct.
 ! Results may not be correct.
--1! Results may not be correct.! Results may not be correct.
-
-Iter 1 had 43008 latency measurement passes, with 512 accesses per pass:
-...lat clock ticks == 5016020084 (adjusted by -71433)
-...lat ns == 5.01589e+09 (adjusted by -71431.2)
-...lat sec == 5.01589 (adjusted by -7.14312e-05)
-Iter 1 had 1511424 total load generation passes, with 4096 bytes per pass:
-...load total clock ticks across 31 threads == 156110392232 (adjusted by -2367357)
-...load total ns across 31 threads == 1.56106e+11 (adjusted by -2.3673e+06)
-...load total sec across 31 threads == 156.106 (adjusted by -0.0023673)
+Iter 2 had 64512 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5001059130 (adjusted by -106146)
+...lat ns == 5.00087e+09 (adjusted by -106142)
+...lat sec == 5.00087 (adjusted by -0.000106142)
+Iter 2 had 1875968 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 156185811055 (adjusted by -2858370)
+...load total ns across 31 threads == 1.5618e+11 (adjusted by -2.85826e+06)
+...load total sec across 31 threads == 156.18 (adjusted by -0.00285826)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 3 had 64512 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5004450019 (adjusted by -106402)
+...lat ns == 5.00426e+09 (adjusted by -106398)
+...lat sec == 5.00426 (adjusted by -0.000106398)
+Iter 3 had 1870848 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 156238381515 (adjusted by -2748253)
+...load total ns across 31 threads == 1.56233e+11 (adjusted by -2.74815e+06)
+...load total sec across 31 threads == 156.233 (adjusted by -0.00274815)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 4 had 64512 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5001479852 (adjusted by -107052)
+...lat ns == 5.00129e+09 (adjusted by -107048)
+...lat sec == 5.00129 (adjusted by -0.000107048)
+Iter 4 had 1871872 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 156146099243 (adjusted by -2883001)
+...load total ns across 31 threads == 1.5614e+11 (adjusted by -2.88289e+06)
+...load total sec across 31 threads == 156.14 (adjusted by -0.00288289)
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+Iter 5 had 64512 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5000394258 (adjusted by -107464)
+...lat ns == 5.00021e+09 (adjusted by -107460)
+...lat sec == 5.00021 (adjusted by -0.00010746)
+Iter 5 had 1872896 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 156133404547 (adjusted by -2822550)
+...load total ns across 31 threads == 1.56128e+11 (adjusted by -2.82245e+06)
+...load total sec across 31 threads == 156.128 (adjusted by -0.00282245)
 
 Stopping power measurement threads...done
 
 *** RESULTS***
 
-Iter #   0:    227.787 ns/access @    1172.430 MB/s mean self-imposed load
+Iter #   0:    151.707 ns/access @    1450.838 MB/s mean self-imposed load
+Iter #   1:    151.403 ns/access @    1454.526 MB/s mean self-imposed load
+Iter #   2:    151.506 ns/access @    1450.069 MB/s mean self-imposed load
+Iter #   3:    151.416 ns/access @    1451.720 MB/s mean self-imposed load
+Iter #   4:    151.383 ns/access @    1452.632 MB/s mean self-imposed load
 
 
-Mean: 227.787 ns/access and 1172.43 MB/s mean imposed load (not necessarily matched)
-Min: 227.787 ns/access
-25th Percentile: 227.787 ns/access
-Median: 227.787 ns/access
-75th Percentile: 227.787 ns/access
-95th Percentile: 227.787 ns/access
-99th Percentile: 227.787 ns/access
-Max: 227.787 ns/access
-Mode: 227.787 ns/access
+Mean: 151.483 ns/access and 1451.96 MB/s mean imposed load (not necessarily matched)
+Min: 151.383 ns/access
+25th Percentile: 151.403 ns/access
+Median: 151.416 ns/access
+75th Percentile: 151.506 ns/access
+95th Percentile: 151.707 ns/access
+99th Percentile: 151.707 ns/access
+Max: 151.707 ns/access
+Mode: 151.707 ns/access
 
 
 
