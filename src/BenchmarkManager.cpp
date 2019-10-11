@@ -155,15 +155,19 @@ BenchmarkManager::~BenchmarkManager() {
 #endif
 #ifdef __gnu_linux__
 #ifdef HAS_LARGE_PAGES
-            if (config_.useLargePages())
+            if (config_.useLargePages()) {
                 free_huge_pages(mem_arrays_[i]);
-            else
+            }
+            else {
 #endif
 #ifdef HAS_NUMA
-                numa_free(mem_arrays_[i], mem_array_lens_[i]); 
+                // numa_free(mem_arrays_[i], mem_array_lens_[i]); 
+                //printf("HAS_NUMA: freeing...[%d]: %p\n", i, &(mem_arrays_[i]));
+                // free(mem_arrays_[i]);
 #else
                 free(orig_malloc_addr_); //this is somewhat of a band-aid
 #endif
+            }
 #endif
         }
     //Close results file
@@ -467,8 +471,10 @@ void BenchmarkManager::setupWorkingSets(size_t working_set_size) {
 #endif
 #ifdef __gnu_linux__
 #ifdef HAS_NUMA
-            numa_set_strict(1); //Enforce NUMA memory allocation to land on specified node or fail otherwise. Alternative node fallback is forbidden.
-            mem_arrays_[numa_node] = numa_alloc_onnode(allocation_size, numa_node);
+            // numa_set_strict(1); //Enforce NUMA memory allocation to land on specified node or fail otherwise. Alternative node fallback is forbidden.
+            // mem_arrays_[numa_node] = numa_alloc_onnode(allocation_size, numa_node);
+            mem_arrays_[numa_node] = malloc(allocation_size);
+            // printf("mem_arrays_[%d]: %p\n", numa_node, &(mem_arrays_[numa_node]));
 #endif
 #ifndef HAS_NUMA //special case
             mem_arrays_[numa_node] = malloc(allocation_size);
@@ -478,7 +484,6 @@ void BenchmarkManager::setupWorkingSets(size_t working_set_size) {
 #ifdef HAS_LARGE_PAGES
         }
 #endif
-        
         if (mem_arrays_[numa_node] != nullptr)
             mem_array_lens_[numa_node] = config_.getNumWorkerThreads() * working_set_size;
         else {
