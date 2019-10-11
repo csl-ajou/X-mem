@@ -42,7 +42,7 @@ fi
 xmem_dir=$1
 arch=$2
 max_num_threads=$3
-max_working_set_size_KB=$4
+max_working_set_size_KB=$4 # I do not use this value
 output_dir=$5
 
 mkdir -p $output_dir
@@ -52,14 +52,17 @@ uname -r > $output_dir/uname.txt
 uname -m >> $output_dir/uname.txt
 uname -n >> $output_dir/uname.txt
 
-for (( num_threads=1; num_threads<=$max_num_threads; num_threads++ )); do
-	for (( working_set_size_KB=4; working_set_size_KB<=$max_working_set_size_KB; )); do
+# for (( num_threads=1; num_threads<=$max_num_threads; num_threads++ )); do
+    # for (( working_set_size_KB=8388608; working_set_size_KB<=$max_working_set_size_KB; )); do
+    # $array_working_set_size_KB is determined from run_sdhm.sh
+    for working_set_size_KB in ${array_working_set_size_KB[@]}; do
 		echo $working_set_size_KB KB, $num_threads thread\(s\)...
         # Large pages are not used by default. If you want them, specify -L.
-		$xmem_dir/bin/xmem-linux-$arch -a -v -w$working_set_size_KB -j$num_threads -f $output_dir/xmem_w$working_set_size_KB\_j$num_threads\.csv > $output_dir/xmem_w$working_set_size_KB\_j$num_threads\.txt 2>&1
+		$xmem_dir/bin/xmem-linux-$arch -C0 -t -l -c 64 -R -W -r -s -v -u -n 5 -w$working_set_size_KB -j$max_num_threads -f $output_dir/xmem_w$working_set_size_KB\_j$num_threads\.csv > $output_dir/xmem_w$working_set_size_KB\_j$num_threads\.txt 2>&1
 
-		let "working_set_size_KB=$working_set_size_KB*2"
+		# let "working_set_size_KB=$working_set_size_KB*2"
+        sleep 10
 	done
-done
+#done
 
 echo DONE
