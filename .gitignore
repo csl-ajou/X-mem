@@ -77,3 +77,6 @@ Temporary Items
 # Logs
 logs/*
 scripts_postprocessing/*.json
+plots
+tags
+__pycache__

@@ -6,13 +6,16 @@ LOG = XMEM + "logs/"
 
 # Manual configuration
 # You should change your log dirs below
-DRAM_LOG_DIR = LOG + "dram-20190823-010746/"
-CACHED_LOG_DIR = LOG + "cached-20190823-015232/"
-UNCACHED_LOG_DIR = LOG + "uncached-20190821-092814/"
+DRAM_LOG_DIR = LOG + "dram-preferred/"
+CACHED_LOG_DIR = LOG + "cached-preferred/"
+CACHED_D_LOG_DIR = LOG + "cached-distributed/"
+CACHED_DS_LOG_DIR = LOG + "cached-distributed-shuffle/"
+CACHED_S_LOG_DIR = LOG + "cached-shuffle/"
+UNCACHED_LOG_DIR = LOG + "uncached-preferred/"
+UNCACHED_M_LOG_DIR = LOG + "uncached-modified/"
 
-dram_range = ["1920000"]
-cached_range = dram_range + ["7340032"]
-# uncached_range = cached_range + [9600000]
+dram_range = ["1048576", "1536000", "2097152", "2560000", "3145728", "3584000"]
+cached_range = dram_range
 uncached_range = cached_range
 
 # Refined data for plot
@@ -20,12 +23,6 @@ header = []
 
 
 def make_dict(mem):
-    if mem == "dram":
-        ran = dram_range
-    elif mem == "cached":
-        ran = cached_range
-    elif mem == "uncached":
-        ran = uncached_range
     return {
         "latency": {
             "seq": {
@@ -47,7 +44,7 @@ def make_dict(mem):
                 "w": []
             },
         },
-        "size": ran
+        "size": dram_range
     }
 
 
@@ -108,13 +105,21 @@ def refine():
     # dram
     __get_refine("dram", dram_range, DRAM_LOG_DIR)
     __get_refine("cached", cached_range, CACHED_LOG_DIR)
-    __get_refine("uncached", uncached_range, UNCACHED_LOG_DIR)
+    __get_refine("cached-s", cached_range, CACHED_S_LOG_DIR)
+    __get_refine("cached-ds", cached_range, CACHED_DS_LOG_DIR)
+    __get_refine("cached-d", cached_range, CACHED_D_LOG_DIR)
+    __get_refine("uncached-p", uncached_range, UNCACHED_LOG_DIR)
+    __get_refine("uncached-m", uncached_range, UNCACHED_M_LOG_DIR)
 
 
 refined_data = {
     "dram": make_dict("dram"),
     "cached": make_dict("cached"),
-    "uncached": make_dict("uncached"),
+    "cached-s": make_dict("cached-s"),
+    "cached-ds": make_dict("cached-ds"),
+    "cached-d": make_dict("cached-d"),
+    "uncached-p": make_dict("uncached-p"),
+    "uncached-m": make_dict("uncached-m"),
 }
 
 
