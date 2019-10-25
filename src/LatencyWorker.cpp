@@ -50,6 +50,8 @@
 #include <linux/perf_event.h>
 #endif
 
+#define GiB (1024*1024*1024UL)
+
 /*
  * AHN: perf measurement
  */
@@ -186,13 +188,18 @@ void LatencyWorker::run() {
         forwSequentialRead_Word32(prime_start_address, prime_end_address); //dependent reads on the memory, make sure caches are ready, coherence, etc...
     }
 
+    // target_ticks now should be changed to measure a big memory size
+    if (len >= 2 * GiB) {
+        target_ticks = UINT64_MAX;
+    }
+
     // AHN: Start the measurement
     for (uint32_t i = 0; i < NUM_COUNTERS; i++) {
         ioctl(perf_fd[i], PERF_EVENT_IOC_RESET, 0);
         ioctl(perf_fd[i], PERF_EVENT_IOC_ENABLE, 0);
     }
 
-    system("numastat -p X-mem");
+    system("numastat -p xmem");
 
     //Run benchmark
     //Run actual version of function and loop overhead
@@ -202,7 +209,10 @@ void LatencyWorker::run() {
         UNROLL256((*kernel_fptr)(next_address, &next_address, use_sequential_kernel_fptr);)
         stop_tick = stop_timer();
         elapsed_ticks += (stop_tick - start_tick);
-        passes+=256;
+        passes += 256;
+        if (next_address == static_cast<uintptr_t*>(mem_array)) {
+            break;
+        }
     }
 
     // AHN: Stop the measurement
