@@ -55,13 +55,7 @@ function prepare() {
         mkdir -p $LOG_DIR
     fi
     uname -a > ${LOG_DIR}/uname.txt
-    touch ${LOG_DIR}/history.log
-
-    if [[ `uname -a` == *"cached"* ]]; then
-        # echo 1048576 | sudo tee /proc/sys/vm/nr_pages_of_dram
-        cat /proc/sys/vm/nr_pages_of_dram > ${LOG_DIR}/config.txt
-        cat /proc/sys/vm/min_nr_chunks >> ${LOG_DIR}/config.txt
-    fi
+    touch ${LOG_DIR}/history
 
     # Memory allocation on each thread
     # echo 524288 | sudo tee /proc/sys/vm/nr_pages_of_dram
@@ -70,7 +64,14 @@ function prepare() {
     sudo modprobe msr
 
     # Set CPU freq at max
-    sudo bash $HOME/scripts/set_max_freq.sh
+    f_max_freq=$HOME/scripts/set_max_freq.sh
+    f_prefetch=$HOME/scripts/prefetchers.sh
+    if [ ! -f $f_max_freq  ] | [ ! -f $f_prefetch ]; then
+        echo "There are no those files. Contact with Superv"
+        exit 1
+    fi
+    sudo bash $f_max_freq
+    sudo bash $f_prefetch disable
 
     # No Randomization
     echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
@@ -89,9 +90,11 @@ function prepare() {
 
     if [[ `uname -a` == *"cached"* ]]; then
         # echo 1048576 | sudo tee /proc/sys/vm/nr_pages_of_dram
-        cat /proc/sys/vm/nr_pages_of_dram > ${LOG_DIR}/config.txt
-        cat /proc/sys/vm/min_nr_chunks >> ${LOG_DIR}/config.txt
+        cat /proc/sys/vm/nr_pages_of_dram >> ${LOG_DIR}/config
+        cat /proc/sys/vm/min_nr_chunks >> ${LOG_DIR}/config
     fi
+    sudo sysctl kernel >> ${LOG_DIR}/kernel_opt
+    sudo sysctl vm >> ${LOG_DIR}/vm_opt
 }
 
 function clean() {
@@ -103,7 +106,6 @@ function run() {
     local mode=""
     local bench_type=""
     local index=""
-    local title="$1-$2-$3"
 
     if [[ "rand" == $1 ]]; then
         pattern="-r"
@@ -130,54 +132,17 @@ function run() {
         bench_type="-t"
         index="22"
     fi
-    touch $LOG_DIR/${title}.log
+
     for wss in ${ARR_WSS_KB[@]}; do
-        echo "[$wss] pattern $1 $pattern / mode $2 $mode... / benchmark $3 $bench_type" | tee -a ${LOG_DIR}/history.log
-        echo "$policy_option" | tee -a ${LOG_DIR}/history.log
-        PERF_TEMP="$LOG_DIR/perf_temp.txt"
-        XMEM_TEMP="$LOG_DIR/xmem_w${wss}_j${NUM_THREADS}_${title}"
-
-        touch ${XMEM_TEMP}.txt
-
-        latency=0
-        throughput=0
-        local_hit=0
-        local_miss=0
-        remote_hit=0
-        remote_miss=0
-        local_ratio=0
-        remote_ratio=0
-        local_mpki=0
-        remote_mpki=0
-        inst=0
+        echo "[$wss] pattern $1 $pattern / mode $2 $mode... / benchmark $3 $bench_type" | tee -a ${LOG_DIR}/history
+        echo "$policy" | tee -a ${LOG_DIR}/config
+        PERF_TEMP="$LOG_DIR/perf_w${wss}_j${NUM_TRHEADS}_$3"
+        XMEM_TEMP="$LOG_DIR/xmem_w${wss}_j${NUM_THREADS}_$3"
 
         # Run
         clean
-        perf stat -a -e mem_load_l3_miss_retired.local_dram,mem_load_retired.local_pmm,mem_load_l3_miss_retired.remote_dram,mem_load_l3_miss_retired.remote_pmm,inst_retired.any -o $PERF_TEMP -x, -- numactl $policy_option -- $XMEM_DIR/bin/xmem-linux-x64 $bench_type -C0 -c 64 $mode $pattern -v -u -n $NUM_ITER -w${wss} -j${NUM_THREADS} -f ${XMEM_TEMP}.csv >> ${XMEM_TEMP}.txt 2>&1
-
-        if [[ "latency" == $3 ]]; then
-            latency=`awk -F',' 'NR==2 {print $22}' ${XMEM_TEMP}.csv`
-            throughput=`awk -F',' 'NR==2 {print $12}' ${XMEM_TEMP}.csv`
-        elif [[ "throughput" == $3 ]]; then
-            throughput=`awk -F',' 'NR==2 {print $12}' ${XMEM_TEMP}.csv`
-        fi
-
-        local_hit=`grep "local_dram" $PERF_TEMP | awk -F',' '{print $1}'`
-        local_miss=`grep "local_pmm" $PERF_TEMP | awk -F',' '{print $1}'`
-        remote_hit=`grep "remote_dram" $PERF_TEMP | awk -F',' '{print $1}'`
-        remote_miss=`grep "remote_pmm" $PERF_TEMP | awk -F',' '{print $1}'`
-        inst=`grep "inst" $PERF_TEMP | awk -F',' '{print $1}'`
-
-        echo "$local_hit $local_miss $remote_hit $remote_miss $inst"| tee -a ${LOG_DIR}/history.log
-
-        local_ratio=$(echo "scale=4; $local_hit * 100/ ($local_hit+$local_miss)" | bc -l | awk '{printf "%.4f", $0}')
-        remote_ratio=$(echo "scale=4; $remote_hit * 100/ ($remote_hit+$remote_miss)" | bc -l | awk '{printf "%.4f", $0}')
-        local_mpki=$(echo "scale=4; $local_miss * 1000/ $inst" | bc -l | awk '{printf "%.4f", $0}')
-        remote_mpki=$(echo "scale=4; $remote_miss * 1000/ $inst" | bc -l | awk '{printf "%.4f", $0}')
-        echo "[$wss] $latency $throughput $local_ratio $remote_ratio $local_mpki $remote_mpki" | tee -a ${LOG_DIR}/history.log
-        echo "$wss $latency $throughput $local_ratio $remote_ratio $local_mpki $remote_mpki" | tee -a ${LOG_DIR}/${title}.log
-
-        rm $PERF_TEMP
+        sleep 10
+        sudo numactl $policy_option -N 0 -- $XMEM_DIR/bin/xmem-linux-x64 $bench_type $mode $pattern -v -n $NUM_ITER -w${wss} -j${NUM_THREADS} -f ${XMEM_TEMP}.csv -p ${PERF_TEMP} >> ${XMEM_TEMP}.txt 2>&1
         sleep 10
     done
 }
@@ -225,7 +190,7 @@ ARR_WSS_KB=($((16*$GiB)) $((32*$GiB)) $((64*$GiB)) $((128*$GiB)) $((256*$GiB)) $
 prepare
 
 run "seq" "read" "latency"
-run "seq" "write" "latency"
-run "rand" "read" "latency"
-run "rand" "write" "latency"
+# run "seq" "write" "latency"
+# run "rand" "read" "latency"
+# run "rand" "write" "latency"
 end
