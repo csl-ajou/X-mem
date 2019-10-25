@@ -73,3 +73,10 @@ Temporary Items
 .apdisk
 
 *.tar.gz
+
+# Logs
+logs/*
+scripts_postprocessing/*.json
+plots
+tags
+__pycache__

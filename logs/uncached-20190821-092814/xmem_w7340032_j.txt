@@ -1,0 +1,952 @@
+------------------------------------------------------------------------------------------
+Extensible Memory Benchmarking Tool (X-Mem) v2.4.2 for GNU/Linux on Intel x86-64
+Build date: Wed Aug 21 09:25:29 UTC 2019
+Indicated compiler(s): GNU C/C++ (gcc/g++) 
+(C) Microsoft Corporation 2015
+Originally authored by Mark Gottscho <mgottscho@ucla.edu>
+------------------------------------------------------------------------------------------
+
+
+Verbose output enabled!
+Benchmarking modes:
+---> Throughput
+---> Loaded latency
+
+Benchmark settings:
+---> Random access:                   yes
+---> Sequential access:               yes
+---> Use memory reads:                yes
+---> Use memory writes:               yes
+---> Chunk sizes:                     64 
+---> Stride sizes:                    1 
+---> Number of worker threads:        32
+---> NUMA enabled:                    no
+------> CPU NUMA node affinities:     0 
+------> Memory NUMA node affinities:  0 
+---> Large pages:                     no
+---> Iterations:                      1
+---> Starting test index:             1
+
+Working set per thread:               7516192768 B == 7340032 KB == 7168 MB (1835008 pages)
+
+This binary was built for the following OS and architecture capabilities: 
+GNU/Linux
+ARCH_INTEL
+ARCH_INTEL_X86_64
+ARCH_INTEL_SSE
+ARCH_INTEL_SSE2
+ARCH_AMD64
+ARCH_64BIT
+HAS_NUMA
+HAS_LARGE_PAGES
+HAS_WORD_64
+
+This binary was built with the following compile-time options:
+USE_OS_TIMER
+USE_POSIX_TIMER
+THROUGHPUT_BENCHMARK_BYTES_PER_PASS == 4096
+EXT_DELAY_INJECTED_LOADED_LATENCY_BENCHMARK
+
+
+These are the system type sizes:
+short:                   2
+int:                     4
+long:                    8
+long long:               8
+
+unsigned short:          2
+unsigned:                4
+unsigned long:           8
+unsigned long long:      8
+
+int8_t:                  1
+int16_t:                 2
+int32_t:                 4
+int64_t:                 8
+
+uint8_t:                 1
+uint16_t:                2
+uint32_t:                4
+uint64_t:                8
+
+Word32_t:                4
+Word64_t:                8
+
+void*:                   8
+uintptr_t:               8
+size_t:                  8
+
+Number of NUMA nodes: 4
+Number of physical processor packages: 2
+Number of physical processor cores: 0?
+Number of logical processor cores: 32
+Number of processor L1/L2/L3/L4 caches: 0?/0?/2/0? (guesses)
+Regular page size: 4096 B
+Large page size: 2097152 B
+
+Testing thread affinities...
+Locking to logical CPU 0...Pass      Unlocking...Pass
+Locking to logical CPU 1...Pass      Unlocking...Pass
+Locking to logical CPU 2...Pass      Unlocking...Pass
+Locking to logical CPU 3...Pass      Unlocking...Pass
+Locking to logical CPU 4...Pass      Unlocking...Pass
+Locking to logical CPU 5...Pass      Unlocking...Pass
+Locking to logical CPU 6...Pass      Unlocking...Pass
+Locking to logical CPU 7...Pass      Unlocking...Pass
+Locking to logical CPU 8...Pass      Unlocking...Pass
+Locking to logical CPU 9...Pass      Unlocking...Pass
+Locking to logical CPU 10...Pass      Unlocking...Pass
+Locking to logical CPU 11...Pass      Unlocking...Pass
+Locking to logical CPU 12...Pass      Unlocking...Pass
+Locking to logical CPU 13...Pass      Unlocking...Pass
+Locking to logical CPU 14...Pass      Unlocking...Pass
+Locking to logical CPU 15...Pass      Unlocking...Pass
+Locking to logical CPU 16...Pass      Unlocking...Pass
+Locking to logical CPU 17...Pass      Unlocking...Pass
+Locking to logical CPU 18...Pass      Unlocking...Pass
+Locking to logical CPU 19...Pass      Unlocking...Pass
+Locking to logical CPU 20...Pass      Unlocking...Pass
+Locking to logical CPU 21...Pass      Unlocking...Pass
+Locking to logical CPU 22...Pass      Unlocking...Pass
+Locking to logical CPU 23...Pass      Unlocking...Pass
+Locking to logical CPU 24...Pass      Unlocking...Pass
+Locking to logical CPU 25...Pass      Unlocking...Pass
+Locking to logical CPU 26...Pass      Unlocking...Pass
+Locking to logical CPU 27...Pass      Unlocking...Pass
+Locking to logical CPU 28...Pass      Unlocking...Pass
+Locking to logical CPU 29...Pass      Unlocking...Pass
+Locking to logical CPU 30...Pass      Unlocking...Pass
+Locking to logical CPU 31...Pass      Unlocking...Pass
+
+Initializing timer...done
+Calculated timer frequency: 1000014000 Hz == 1000.01 MHz
+Derived timer ns per tick: 0.999986
+
+mem_arrays_[0]: 0x5627574f6d60
+
+Virtual address for memory on NUMA node 0:
+0x00007F1CD32BF010 --- ALIGNED --> 0x00007F1CD32C0000
+
+Generating benchmarks.
+
+
+-------- Running Benchmark: Test #1T (Throughput) ----------
+CPU NUMA Node: 0
+Memory NUMA Node: 0
+Chunk Size: 64-bit
+Access Pattern: forward sequential
+Read/Write Mode: read
+Number of worker threads: 32
+
+Starting power measurement threads...done
+Running benchmark.
+
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+! Results may not be correct.WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1
+
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+! Results may not be correct.
+Iter 1 had 23307264 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 159857820958 (adjusted by -260955141)
+...ns in total across 32 threads == 1.59856e+11 (adjusted by -2.60951e+08)
+...sec in total across 32 threads == 159.856 (adjusted by -0.260951)
+Stopping power measurement threads...done
+
+*** RESULTS***
+
+Iter #   0:    18225.250    MB/s
+
+
+Mean: 18225.3 MB/s
+Min: 18225.3 MB/s
+25th Percentile: 18225.3 MB/s
+Median: 18225.3 MB/s
+75th Percentile: 18225.3 MB/s
+95th Percentile: 18225.3 MB/s
+99th Percentile: 18225.3 MB/s
+Max: 18225.3 MB/s
+Mode: 18225.3 MB/s
+
+
+
+-------- Running Benchmark: Test #2T (Throughput) ----------
+CPU NUMA Node: 0
+Memory NUMA Node: 0
+Chunk Size: 64-bit
+Access Pattern: forward sequential
+Read/Write Mode: write
+Number of worker threads: 32
+
+Starting power measurement threads...done
+Running benchmark.
+
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+Iter 1 had 5387264 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 161146257752 (adjusted by -66510124)
+...ns in total across 32 threads == 1.61144e+11 (adjusted by -6.65092e+07)
+...sec in total across 32 threads == 161.144 (adjusted by -0.0665092)
+Stopping power measurement threads...done
+
+*** RESULTS***
+
+Iter #   0:    4178.921    MB/s
+
+
+Mean: 4178.92 MB/s
+Min: 4178.92 MB/s
+25th Percentile: 4178.92 MB/s
+Median: 4178.92 MB/s
+75th Percentile: 4178.92 MB/s
+95th Percentile: 4178.92 MB/s
+99th Percentile: 4178.92 MB/s
+Max: 4178.92 MB/s
+Mode: 4178.92 MB/s
+
+
+
+-------- Running Benchmark: Test #3T (Throughput) ----------
+CPU NUMA Node: 0
+Memory NUMA Node: 0
+Chunk Size: 64-bit
+Access Pattern: random
+Read/Write Mode: read
+Number of worker threads: 32
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Starting power measurement threads...done
+Running benchmark.
+
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 1 had 244736 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 177556769895 (adjusted by -1876847)
+...ns in total across 32 threads == 1.77554e+11 (adjusted by -1.87682e+06)
+...sec in total across 32 threads == 177.554 (adjusted by -0.00187682)
+Stopping power measurement threads...done
+
+*** RESULTS***
+
+Iter #   0:    172.297    MB/s
+
+
+Mean: 172.297 MB/s
+Min: 172.297 MB/s
+25th Percentile: 172.297 MB/s
+Median: 172.297 MB/s
+75th Percentile: 172.297 MB/s
+95th Percentile: 172.297 MB/s
+99th Percentile: 172.297 MB/s
+Max: 172.297 MB/s
+Mode: 172.297 MB/s
+
+
+
+-------- Running Benchmark: Test #4T (Throughput) ----------
+CPU NUMA Node: 0
+Memory NUMA Node: 0
+Chunk Size: 64-bit
+Access Pattern: random
+Read/Write Mode: read+write
+Number of worker threads: 32
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Starting power measurement threads...done
+Running benchmark.
+
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+Iter 1 had 149504 passes in total across 32 threads, with 4096 bytes touched per pass:
+...clock ticks in total across 32 threads == 181079079380 (adjusted by -2296128)
+...ns in total across 32 threads == 1.81077e+11 (adjusted by -2.2961e+06)
+...sec in total across 32 threads == 181.077 (adjusted by -0.0022961)
+Stopping power measurement threads...done
+
+*** RESULTS***
+
+Iter #   0:    103.205    MB/s
+
+
+Mean: 103.205 MB/s
+Min: 103.205 MB/s
+25th Percentile: 103.205 MB/s
+Median: 103.205 MB/s
+75th Percentile: 103.205 MB/s
+95th Percentile: 103.205 MB/s
+99th Percentile: 103.205 MB/s
+Max: 103.205 MB/s
+Mode: 103.205 MB/s
+
+
+
+Done running throughput benchmarks.
+
+-------- Running Benchmark: Test #1L (Latency) ----------
+CPU NUMA Node: 0
+Memory NUMA Node: 0
+Latency measurement chunk size: 64-bit
+Latency measurement access pattern: random read (pointer-chasing)
+Load Chunk Size: 64-bit
+Load Access Pattern: forward sequential
+Load Read/Write Mode: read
+Load number of worker threads: 31
+
+Preparing a memory region under test. This might take a while...done
+
+Starting power measurement threads...done
+Running benchmark.
+
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+Iter 1 had 4864 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5177715754 (adjusted by -23790)
+...lat ns == 5.17764e+09 (adjusted by -23789.7)
+...lat sec == 5.17764 (adjusted by -2.37897e-05)
+Iter 1 had 25752576 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 154903109844 (adjusted by -273850970)
+...load total ns across 31 threads == 1.54901e+11 (adjusted by -2.73847e+08)
+...load total sec across 31 threads == 154.901 (adjusted by -0.273847)
+
+Stopping power measurement threads...done
+
+*** RESULTS***
+
+Iter #   0:    2079.067 ns/access @    20132.066 MB/s mean self-imposed load
+
+
+Mean: 2079.07 ns/access and 20132.1 MB/s mean imposed load (not necessarily matched)
+Min: 2079.07 ns/access
+25th Percentile: 2079.07 ns/access
+Median: 2079.07 ns/access
+75th Percentile: 2079.07 ns/access
+95th Percentile: 2079.07 ns/access
+99th Percentile: 2079.07 ns/access
+Max: 2079.07 ns/access
+Mode: 2079.07 ns/access
+
+
+
+-------- Running Benchmark: Test #2L (Latency) ----------
+CPU NUMA Node: 0
+Memory NUMA Node: 0
+Latency measurement chunk size: 64-bit
+Latency measurement access pattern: random read (pointer-chasing)
+Load Chunk Size: 64-bit
+Load Access Pattern: forward sequential
+Load Read/Write Mode: write
+Load number of worker threads: 31
+
+Preparing a memory region under test. This might take a while...done
+
+Starting power measurement threads...done
+Running benchmark.
+
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 1 had 1792 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5673605995 (adjusted by -4874)
+...lat ns == 5.67353e+09 (adjusted by -4873.93)
+...lat sec == 5.67353 (adjusted by -4.87393e-06)
+Iter 1 had 5891072 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 155584545243 (adjusted by -69389253)
+...load total ns across 31 threads == 1.55582e+11 (adjusted by -6.93883e+07)
+...load total sec across 31 threads == 155.582 (adjusted by -0.0693883)
+
+Stopping power measurement threads...done
+
+*** RESULTS***
+
+Iter #   0:    6183.653 ns/access @    4585.173 MB/s mean self-imposed load
+
+
+Mean: 6183.65 ns/access and 4585.17 MB/s mean imposed load (not necessarily matched)
+Min: 6183.65 ns/access
+25th Percentile: 6183.65 ns/access
+Median: 6183.65 ns/access
+75th Percentile: 6183.65 ns/access
+95th Percentile: 6183.65 ns/access
+99th Percentile: 6183.65 ns/access
+Max: 6183.65 ns/access
+Mode: 6183.65 ns/access
+
+
+
+-------- Running Benchmark: Test #3L (Latency) ----------
+CPU NUMA Node: 0
+Memory NUMA Node: 0
+Latency measurement chunk size: 64-bit
+Latency measurement access pattern: random read (pointer-chasing)
+Load Chunk Size: 64-bit
+Load Access Pattern: random
+Load Read/Write Mode: read
+Load number of worker threads: 31
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Starting power measurement threads...done
+Running benchmark.
+
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+-1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 1 had 5632 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5093501761 (adjusted by -49229)
+...lat ns == 5.09343e+09 (adjusted by -49228.3)
+...lat sec == 5.09343 (adjusted by -4.92283e-05)
+Iter 1 had 241664 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 174168267101 (adjusted by -2067641)
+...load total ns across 31 threads == 1.74166e+11 (adjusted by -2.06761e+06)
+...load total sec across 31 threads == 174.166 (adjusted by -0.00206761)
+
+Stopping power measurement threads...done
+
+*** RESULTS***
+
+Iter #   0:    1766.354 ns/access @    168.024 MB/s mean self-imposed load
+
+
+Mean: 1766.35 ns/access and 168.024 MB/s mean imposed load (not necessarily matched)
+Min: 1766.35 ns/access
+25th Percentile: 1766.35 ns/access
+Median: 1766.35 ns/access
+75th Percentile: 1766.35 ns/access
+95th Percentile: 1766.35 ns/access
+99th Percentile: 1766.35 ns/access
+Max: 1766.35 ns/access
+Mode: 1766.35 ns/access
+
+
+
+-------- Running Benchmark: Test #4L (Latency) ----------
+CPU NUMA Node: 0
+Memory NUMA Node: 0
+Latency measurement chunk size: 64-bit
+Latency measurement access pattern: random read (pointer-chasing)
+Load Chunk Size: 64-bit
+Load Access Pattern: random
+Load Read/Write Mode: write
+Load number of worker threads: 31
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Preparing a memory region under test. This might take a while...done
+
+Starting power measurement threads...done
+Running benchmark.
+
+WARNING: Failed to find logical CPU 16 in NUMA node 0
+WARNING: Failed to find logical CPU 17 in NUMA node 0
+WARNING: Failed to find logical CPU 18 in NUMA node 0
+WARNING: Failed to find logical CPU 19 in NUMA node 0
+WARNING: Failed to find logical CPU 20 in NUMA node 0
+WARNING: Failed to find logical CPU 21 in NUMA node 0
+WARNING: Failed to find logical CPU 22 in NUMA node 0
+WARNING: Failed to find logical CPU 23 in NUMA node 0
+WARNING: Failed to find logical CPU 24 in NUMA node 0
+WARNING: Failed to find logical CPU 25 in NUMA node 0
+WARNING: Failed to find logical CPU 26 in NUMA node 0
+WARNING: Failed to find logical CPU 27 in NUMA node 0
+WARNING: Failed to find logical CPU 28 in NUMA node 0
+WARNING: Failed to find logical CPU 29 in NUMA node 0
+WARNING: Failed to find logical CPU 30 in NUMA node 0
+WARNING: Failed to find logical CPU 31 in NUMA node 0
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+WARNING: Failed to lock thread to logical CPU -1! Results may not be correct.
+Iter 1 had 5632 latency measurement passes, with 512 accesses per pass:
+...lat clock ticks == 5132222013 (adjusted by -15891)
+...lat ns == 5.13215e+09 (adjusted by -15890.8)
+...lat sec == 5.13215 (adjusted by -1.58908e-05)
+Iter 1 had 153600 total load generation passes, with 4096 bytes per pass:
+...load total clock ticks across 31 threads == 183200939768 (adjusted by -2621541)
+...load total ns across 31 threads == 1.83198e+11 (adjusted by -2.6215e+06)
+...load total sec across 31 threads == 183.198 (adjusted by -0.0026215)
+
+Stopping power measurement threads...done
+
+*** RESULTS***
+
+Iter #   0:    1779.782 ns/access @    101.529 MB/s mean self-imposed load
+
+
+Mean: 1779.78 ns/access and 101.529 MB/s mean imposed load (not necessarily matched)
+Min: 1779.78 ns/access
+25th Percentile: 1779.78 ns/access
+Median: 1779.78 ns/access
+75th Percentile: 1779.78 ns/access
+95th Percentile: 1779.78 ns/access
+99th Percentile: 1779.78 ns/access
+Max: 1779.78 ns/access
+Mode: 1779.78 ns/access
+
+
+
+Done running latency benchmarks.
+free(): invalid pointer
