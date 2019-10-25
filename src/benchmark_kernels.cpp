@@ -818,9 +818,169 @@ bool xmem::determine_random_kernel(rw_mode_t rw_mode, chunk_size_t chunk_size, R
     return false;
 }
 
-bool xmem::build_random_pointer_permutation(void* start_address, void* end_address, chunk_size_t chunk_size, pattern_mode_t pattern_mode) {
+bool xmem::build_sequential_pointer(void* start_address, void* end_address, chunk_size_t chunk_size) {
     if (g_verbose)
-        std::cout << "Preparing a memory region under test. This might take a while...";
+        std::cout << "Preparing a memory region under test. This might take a while...\n";
+
+    size_t length = reinterpret_cast<uint8_t*>(end_address) - reinterpret_cast<uint8_t*>(start_address); //length of region in bytes
+    size_t num_pointers = 0; //Number of pointers that fit into the memory region of interest
+    switch (chunk_size) {
+        //special case on 32-bit architectures only.
+#ifndef HAS_WORD_64
+        case CHUNK_32b:
+            num_pointers = length / sizeof(Word32_t);
+            break;
+#endif
+#ifdef HAS_WORD_64
+        case CHUNK_64b:
+            num_pointers = length / sizeof(Word64_t);
+            break;
+#endif
+#ifdef HAS_WORD_128
+        case CHUNK_128b:
+            num_pointers = length / sizeof(Word128_t);
+            break;
+#endif
+#ifdef HAS_WORD_256
+        case CHUNK_256b:
+            num_pointers = length / sizeof(Word256_t);
+            break;
+#endif
+#ifdef HAS_WORD_512
+        case CHUNK_512b:
+            num_pointers = length / sizeof(Word512_t);
+            break;
+#endif
+        default:
+            std::cerr << "ERROR: Chunk size must be at least "
+            //special case for 32-bit architectures
+#ifndef HAS_WORD_64
+            <<"32"
+#endif
+#ifdef HAS_WORD_64
+            <<"64"
+#endif
+            << "bits for building a random pointer permutation. This should not have happened." << std::endl;
+            return false;
+    }
+            
+    if (g_verbose)
+        std::cout << "num_pointers: " << num_pointers << std::endl;
+
+#ifdef HAS_WORD_64
+    Word64_t* mem_region_base = reinterpret_cast<Word64_t*>(start_address);
+#else //special case for 32-bit architectures
+    Word32_t* mem_region_base = reinterpret_cast<Word32_t*>(start_address);
+#endif
+    switch (chunk_size) {
+#ifdef HAS_WORD_64
+        case CHUNK_64b:
+            for (size_t i = 0; i < num_pointers; i++) {
+                mem_region_base[i] = reinterpret_cast<Word64_t>(
+		    mem_region_base+(i+1));
+            }
+            mem_region_base[num_pointers - 1] = reinterpret_cast<Word64_t>(mem_region_base);
+            break;
+#else //special case for 32-bit architectures
+        case CHUNK_32b:
+            for (size_t i = 0; i < num_pointers; i++) {
+                mem_region_base[i] = reinterpret_cast<Word32_t>(
+		    mem_region_base+(i+1));
+            }
+            break;
+#endif
+#ifdef HAS_WORD_128
+        case CHUNK_128b:
+            for (size_t i = 0; i < num_pointers; i++) {
+#ifdef HAS_WORD_64
+                mem_region_base[i*2] = reinterpret_cast<Word64_t>(
+		    mem_region_base+((i+1)*2));
+                mem_region_base[(i*2)+1] = 0xFFFFFFFFFFFFFFFF; //1-fill upper 64 bits
+#else //special case for 32-bit architectures
+                mem_region_base[i*4] = reinterpret_cast<Word32_t>(
+		    mem_region_base+((i+1)*4));
+                mem_region_base[(i*4)+1] = 0xFFFFFFFF; //1-fill upper 96 bits
+                mem_region_base[(i*4)+2] = 0xFFFFFFFF; 
+                mem_region_base[(i*4)+3] = 0xFFFFFFFF; 
+#endif
+            }
+            break;
+#endif
+#ifdef HAS_WORD_256
+        case CHUNK_256b:
+            for (size_t i = 0; i < num_pointers; i++) {
+#ifdef HAS_WORD_64
+                mem_region_base[i*4] = reinterpret_cast<Word64_t>(
+		    mem_region_base+((i+1)*4));
+                mem_region_base[(i*4)+1] = 0xFFFFFFFFFFFFFFFF; //1-fill upper 192 bits
+                mem_region_base[(i*4)+2] = 0xFFFFFFFFFFFFFFFF; 
+                mem_region_base[(i*4)+3] = 0xFFFFFFFFFFFFFFFF;
+#else //special case for 32-bit architectures
+                mem_region_base[i*8] = reinterpret_cast<Word32_t>(
+		    mem_region_base+((i+1)*8));
+                mem_region_base[(i*8)+1] = 0xFFFFFFFF; //1-fill upper 224 bits
+                mem_region_base[(i*8)+2] = 0xFFFFFFFF;
+                mem_region_base[(i*8)+3] = 0xFFFFFFFF;
+                mem_region_base[(i*8)+4] = 0xFFFFFFFF;
+                mem_region_base[(i*8)+5] = 0xFFFFFFFF;
+                mem_region_base[(i*8)+6] = 0xFFFFFFFF;
+                mem_region_base[(i*8)+7] = 0xFFFFFFFF;
+#endif
+            }
+            break;
+#endif
+#ifdef HAS_WORD_512
+        case CHUNK_512b:
+            for (size_t i = 0; i < num_pointers; i++) {
+#ifdef HAS_WORD_64
+                mem_region_base[i*4] = reinterpret_cast<Word64_t>(
+		    mem_region_base+((i+1)*4));
+                mem_region_base[(i*4)+1] = 0xFFFFFFFFFFFFFFFF; //1-fill upper 448 bits
+                mem_region_base[(i*4)+2] = 0xFFFFFFFFFFFFFFFF; 
+                mem_region_base[(i*4)+3] = 0xFFFFFFFFFFFFFFFF;
+                mem_region_base[(i*4)+4] = 0xFFFFFFFFFFFFFFFF;
+                mem_region_base[(i*4)+5] = 0xFFFFFFFFFFFFFFFF;
+                mem_region_base[(i*4)+6] = 0xFFFFFFFFFFFFFFFF;
+                mem_region_base[(i*4)+7] = 0xFFFFFFFFFFFFFFFF;
+#else //special case for 32-bit architectures
+                mem_region_base[i*8] = reinterpret_cast<Word32_t>(
+		    mem_region_base+((i+1)*8));
+                mem_region_base[(i*8)+1] = 0xFFFFFFFF; //1-fill upper 480 bits
+                mem_region_base[(i*8)+2] = 0xFFFFFFFF;
+                mem_region_base[(i*8)+3] = 0xFFFFFFFF;
+                mem_region_base[(i*8)+4] = 0xFFFFFFFF;
+                mem_region_base[(i*8)+5] = 0xFFFFFFFF;
+                mem_region_base[(i*8)+6] = 0xFFFFFFFF;
+                mem_region_base[(i*8)+7] = 0xFFFFFFFF;
+                mem_region_base[(i*8)+8] = 0xFFFFFFFF;
+                mem_region_base[(i*8)+9] = 0xFFFFFFFF;
+                mem_region_base[(i*8)+10] = 0xFFFFFFFF;
+                mem_region_base[(i*8)+11] = 0xFFFFFFFF;
+                mem_region_base[(i*8)+12] = 0xFFFFFFFF;
+                mem_region_base[(i*8)+13] = 0xFFFFFFFF;
+                mem_region_base[(i*8)+14] = 0xFFFFFFFF;
+                mem_region_base[(i*8)+15] = 0xFFFFFFFF;
+#endif
+            }
+            break;
+#endif
+        default:
+            std::cerr << "ERROR: Got an invalid chunk size. This should not have happened." << std::endl;
+            return false;
+    }
+
+    if (g_verbose) {
+        std::cout << "done" << std::endl;
+        std::cout << std::endl;
+    }
+
+    return true;
+}
+
+
+bool xmem::build_random_pointer_permutation(void* start_address, void* end_address, chunk_size_t chunk_size) {
+    if (g_verbose)
+        std::cout << "Preparing a memory region under test. This might take a while...\n";
 
     size_t length = reinterpret_cast<uint8_t*>(end_address) - reinterpret_cast<uint8_t*>(start_address); //length of region in bytes
     size_t num_pointers = 0; //Number of pointers that fit into the memory region of interest
@@ -883,14 +1043,11 @@ bool xmem::build_random_pointer_permutation(void* start_address, void* end_addre
     //...and back to 0
     traversal_order[num_pointers] = 0;
 
-    // if pattern_mode == SEQUNETIAL then SKIP
-    if (pattern_mode == RANDOM) {
-        //shuffle the elements 1,2,...,num-pointers-1,
-        //thereby preserving the property of a hamiltonian cycle starting
-        //and ending at 0
-        std::shuffle(traversal_order + 1,
-        traversal_order + (num_pointers - 1), gen);
-    }
+    //shuffle the elements 1,2,...,num-pointers-1,
+    //thereby preserving the property of a hamiltonian cycle starting
+    //and ending at 0
+    std::shuffle(traversal_order + 1,
+    traversal_order + (num_pointers - 1), gen);
 
     //finally, impose the traversal order within the pointer array
 

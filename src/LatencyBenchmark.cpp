@@ -280,16 +280,32 @@ bool LatencyBenchmark::runCore() {
     //Build pointer indices for random-access latency thread. We assume that latency thread is the first one, so we use beginning of memory region.
     // building random pointer will be used in only random
     // otherwise the inside function will create sequnetial array
-    if (!build_random_pointer_permutation(mem_array_,
-                                       reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array_)+len_per_thread), //static casts to silence compiler warnings
+    if (pattern_mode_ == SEQUENTIAL) {
+        if (!build_sequential_pointer(mem_array_,
+                    reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array_)+len_per_thread), //static casts to silence compiler warnings
 #ifndef HAS_WORD_64 //special case: 32-bit architectures
-                                       CHUNK_32b, pattern_mode_)) { 
+                    CHUNK_32b)) { 
 #endif
 #ifdef HAS_WORD_64
-                                       CHUNK_64b, pattern_mode_)) { 
+                    CHUNK_64b)) { 
 #endif
-        std::cerr << "ERROR: Failed to build a random pointer permutation for the latency measurement thread!" << std::endl;
-        return false;
+            std::cerr << "ERROR: Failed to build a sequential pointer for the latency measurement thread!" << std::endl;
+            return false;
+        }
+    }
+    else if (pattern_mode_ == RANDOM) {
+
+        if (!build_random_pointer_permutation(mem_array_,
+                    reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array_)+len_per_thread), //static casts to silence compiler warnings
+#ifndef HAS_WORD_64 //special case: 32-bit architectures
+                    CHUNK_32b)) { 
+#endif
+#ifdef HAS_WORD_64
+                    CHUNK_64b)) { 
+#endif
+            std::cerr << "ERROR: Failed to build a random pointer permutation for the latency measurement thread!" << std::endl;
+            return false;
+        }
     }
 
     //Set up load generation kernel function pointers
@@ -313,7 +329,7 @@ bool LatencyBenchmark::runCore() {
             for (uint32_t i = 1; i < num_worker_threads_; i++) {
                 if (!build_random_pointer_permutation(reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array_) + i*len_per_thread), //static casts to silence compiler warnings
                                                    reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array_) + (i+1)*len_per_thread), //static casts to silence compiler warnings
-                                                   chunk_size_, pattern_mode_)) {
+                                                   chunk_size_)) {
                     std::cerr << "ERROR: Failed to build a random pointer permutation for a load generation thread!" << std::endl;
                     return false;
                 }
