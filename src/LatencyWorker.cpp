@@ -142,6 +142,7 @@ void LatencyWorker::run() {
         perf_fd[i] = perf_event_open(&pe[i], 0, -1, -1, 0);
         if (perf_fd[i] == -1) {
             fprintf(stderr, "Error opening leader %llx\n", pe[i].config);
+            fprintf(stderr, "You may not run X-mem with root permission.\n");
             exit(EXIT_FAILURE);
         }
     }
@@ -185,6 +186,8 @@ void LatencyWorker::run() {
         ioctl(perf_fd[i], PERF_EVENT_IOC_RESET, 0);
         ioctl(perf_fd[i], PERF_EVENT_IOC_ENABLE, 0);
     }
+
+    system("numastat -p X-mem");
 
     //Run benchmark
     //Run actual version of function and loop overhead
