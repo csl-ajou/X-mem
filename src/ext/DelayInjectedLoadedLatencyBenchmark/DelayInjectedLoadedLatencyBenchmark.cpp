@@ -108,10 +108,10 @@ bool DelayInjectedLoadedLatencyBenchmark::runCore() {
     if (!build_random_pointer_permutation(mem_array_,
                                        reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array_)+len_per_thread), //static casts to silence compiler warnings
 #ifndef HAS_WORD_64 //special case: 32-bit architectures
-                                       CHUNK_32b)) { 
+                                       CHUNK_32b, pattern_mode_)) { 
 #endif
 #ifdef HAS_WORD_64
-                                       CHUNK_64b)) { 
+                                       CHUNK_64b, pattern_mode_)) { 
 #endif
         std::cerr << "ERROR: Failed to build a random pointer permutation for the latency measurement thread!" << std::endl;
         return false;
@@ -387,7 +387,7 @@ bool DelayInjectedLoadedLatencyBenchmark::runCore() {
                                                     len_per_thread,
                                                     lat_kernel_fptr,
                                                     lat_kernel_dummy_fptr,
-                                                    cpu_id));
+                                                    cpu_id, pattern_mode_));
             } else {
                 workers.push_back(new LoadWorker(threadmem_array_,
                                                  len_per_thread,

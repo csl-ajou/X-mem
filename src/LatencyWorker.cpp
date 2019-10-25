@@ -53,13 +53,15 @@ LatencyWorker::LatencyWorker(
         size_t len,
         RandomFunction kernel_fptr,
         RandomFunction kernel_dummy_fptr,
-        int32_t cpu_affinity
+        int32_t cpu_affinity,
+        int use_sequential_kernel_fptr
     ) :
         MemoryWorker(
             mem_array,
             len,
             cpu_affinity
         ),
+        use_sequential_kernel_fptr_(use_sequential_kernel_fptr),
         kernel_fptr_(kernel_fptr),
         kernel_dummy_fptr_(kernel_dummy_fptr)
     {
@@ -71,10 +73,12 @@ LatencyWorker::~LatencyWorker() {
 void LatencyWorker::run() {
     //Set up relevant state -- localized to this thread's stack
     int32_t cpu_affinity = 0;
+    int use_sequential_kernel_fptr = 0;
     RandomFunction kernel_fptr = NULL;
     RandomFunction kernel_dummy_fptr = NULL;
-    uintptr_t* next_address = NULL;
-    uint32_t bytes_per_pass = 0; 
+    void* prime_start_address = NULL;
+    void* prime_end_address = NULL;
+    uint32_t bytes_per_pass = 0;
     uint32_t passes = 0;
     uint32_t p = 0;
     tick_t start_tick = 0;
@@ -95,9 +99,12 @@ void LatencyWorker::run() {
         cpu_affinity = cpu_affinity_;
         kernel_fptr = kernel_fptr_;
         kernel_dummy_fptr = kernel_dummy_fptr_;
+        use_sequential_kernel_fptr = use_sequential_kernel_fptr_;
+        prime_start_address = mem_array_;
+        prime_end_address = reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array_) + len_);
         releaseLock();
     }
-    
+
     //Set processor affinity
     bool locked = lock_thread_to_cpu(cpu_affinity);
     if (!locked)
@@ -116,34 +123,33 @@ void LatencyWorker::run() {
 
     //Prime memory
     for (uint32_t i = 0; i < 4; i++) {
-        void* prime_start_address = mem_array; 
-        void* prime_end_address = reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array) + len);
         forwSequentialRead_Word32(prime_start_address, prime_end_address); //dependent reads on the memory, make sure caches are ready, coherence, etc...
     }
 
     //Run benchmark
     //Run actual version of function and loop overhead
-    next_address = static_cast<uintptr_t*>(mem_array); 
+    uintptr_t* next_address = static_cast<uintptr_t*>(mem_array); 
     while (elapsed_ticks < target_ticks) {
         start_tick = start_timer();
-        UNROLL256((*kernel_fptr)(next_address, &next_address, 0);)
+        UNROLL256((*kernel_fptr)(next_address, &next_address, use_sequential_kernel_fptr);)
         stop_tick = stop_timer();
         elapsed_ticks += (stop_tick - start_tick);
         passes+=256;
     }
 
     //Run dummy version of function and loop overhead
-    next_address = static_cast<uintptr_t*>(mem_array); 
+    // XXX Should we need `next_address` in this stage? (Think in Random)
+    next_address = static_cast<uintptr_t*>(mem_array);
     while (p < passes) {
         start_tick = start_timer();
-        UNROLL256((*kernel_dummy_fptr)(next_address, &next_address, 0);)
+        UNROLL256((*kernel_dummy_fptr)(next_address, &next_address, use_sequential_kernel_fptr);)
         stop_tick = stop_timer();
         elapsed_dummy_ticks += (stop_tick - start_tick);
         p+=256;
     }
 
     adjusted_ticks = elapsed_ticks - elapsed_dummy_ticks;
-    
+
     //Warn if something looks fishy
     if (elapsed_dummy_ticks >= elapsed_ticks || elapsed_ticks < MIN_ELAPSED_TICKS || adjusted_ticks < 0.5 * elapsed_ticks)
         warning = true;

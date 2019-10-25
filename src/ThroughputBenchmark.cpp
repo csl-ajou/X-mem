@@ -98,7 +98,7 @@ bool ThroughputBenchmark::runCore() {
         for (uint32_t i = 0; i < num_worker_threads_; i++) {
             if (!build_random_pointer_permutation(reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array_) + i*len_per_thread), //casts to silence compiler warnings
                                                reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array_) + (i+1)*len_per_thread), //casts to silence compiler warnings
-                                               chunk_size_)) {
+                                               chunk_size_, pattern_mode_)) {
                 std::cerr << "ERROR: Failed to build a random pointer permutation for a worker thread!" << std::endl;
                 return false;
             }
