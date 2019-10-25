@@ -92,7 +92,11 @@ void LatencyBenchmark::reportBenchmarkInfo() const {
     std::cout << "Memory NUMA Node: " << mem_node_ << std::endl;
     std::cout << "Latency measurement chunk size: ";
     std::cout << sizeof(uintptr_t)*8 << "-bit" << std::endl;
-    std::cout << "Latency measurement access pattern: random read (pointer-chasing)" << std::endl;
+    if (pattern_mode_ == SEQUENTIAL) {
+        std::cout << "Latency measurement access pattern: sequential read" << std::endl;
+    } else if (pattern_mode_ == RANDOM) {
+        std::cout << "Latency measurement access pattern: random read (pointer-chasing)" << std::endl;
+    }
 
     if (num_worker_threads_ > 1) {
         std::cout << "Load Chunk Size: ";
@@ -264,21 +268,25 @@ bool LatencyBenchmark::runCore() {
     size_t len_per_thread = len_ / num_worker_threads_; //Carve up memory space so each worker has its own area to play in
 
     //Set up latency measurement kernel function pointers
+    //These function types are `RandomFunction` but it will 
+    //differently behave based on `pattern_mode_`
     RandomFunction lat_kernel_fptr = &chasePointers;
     RandomFunction lat_kernel_dummy_fptr = &dummy_chasePointers;
 
     //Initialize memory regions for all threads by writing to them, causing the memory to be physically resident.
     forwSequentialWrite_Word32(mem_array_,
-                               reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array_)+len_)); //static casts to silence compiler warnings
+            reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array_)+len_)); //static casts to silence compiler warnings
 
     //Build pointer indices for random-access latency thread. We assume that latency thread is the first one, so we use beginning of memory region.
+    // building random pointer will be used in only random
+    // otherwise the inside function will create sequnetial array
     if (!build_random_pointer_permutation(mem_array_,
                                        reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array_)+len_per_thread), //static casts to silence compiler warnings
 #ifndef HAS_WORD_64 //special case: 32-bit architectures
-                                       CHUNK_32b)) { 
+                                       CHUNK_32b, pattern_mode_)) { 
 #endif
 #ifdef HAS_WORD_64
-                                       CHUNK_64b)) { 
+                                       CHUNK_64b, pattern_mode_)) { 
 #endif
         std::cerr << "ERROR: Failed to build a random pointer permutation for the latency measurement thread!" << std::endl;
         return false;
@@ -305,7 +313,7 @@ bool LatencyBenchmark::runCore() {
             for (uint32_t i = 1; i < num_worker_threads_; i++) {
                 if (!build_random_pointer_permutation(reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array_) + i*len_per_thread), //static casts to silence compiler warnings
                                                    reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array_) + (i+1)*len_per_thread), //static casts to silence compiler warnings
-                                                   chunk_size_)) {
+                                                   chunk_size_, pattern_mode_)) {
                     std::cerr << "ERROR: Failed to build a random pointer permutation for a load generation thread!" << std::endl;
                     return false;
                 }
@@ -345,11 +353,13 @@ bool LatencyBenchmark::runCore() {
             if (cpu_id < 0)
                 std::cerr << "WARNING: Failed to find logical CPU " << t << " in NUMA node " << cpu_node_ << std::endl;
             if (t == 0) { //special case: thread 0 is always latency thread
+                // using lat_kernel_fptr, lat_kernel_dummy_fptr
+                // no matter pattern is random or sequential
                 workers.push_back(new LatencyWorker(thread_mem_array,
                                                     len_per_thread,
                                                     lat_kernel_fptr,
                                                     lat_kernel_dummy_fptr,
-                                                    cpu_id));
+                                                    cpu_id, pattern_mode_));
             } else {
                 if (pattern_mode_ == SEQUENTIAL)
                     workers.push_back(new LoadWorker(thread_mem_array,
@@ -377,7 +387,6 @@ bool LatencyBenchmark::runCore() {
         for (uint32_t t = 0; t < num_worker_threads_; t++)
             if (!worker_threads[t]->join())
                 std::cerr << "WARNING: A worker thread failed to complete correctly!" << std::endl;
-        
         //Compute metrics for this iteration
         bool iterwarning = false;
 
@@ -386,9 +395,13 @@ bool LatencyBenchmark::runCore() {
         tick_t lat_adjusted_ticks = workers[0]->getAdjustedTicks();
         tick_t lat_elapsed_dummy_ticks = workers[0]->getElapsedDummyTicks();
         uint32_t lat_bytes_per_pass = workers[0]->getBytesPerPass();
-        uint32_t lat_accesses_per_pass = lat_bytes_per_pass / 8;
+
+        // lat_bytes_per_pass is 64 as well but the thing is that
+        // random would touch the same cache line so it would get
+        // cache advantages
+        uint32_t lat_accesses_per_pass = lat_bytes_per_pass / 64;
         iterwarning |= workers[0]->hadWarning();
-        
+
         //Compute throughput generated by load threads
         uint32_t load_total_passes = 0;
         tick_t load_total_adjusted_ticks = 0;
