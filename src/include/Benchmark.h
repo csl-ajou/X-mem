@@ -266,6 +266,8 @@ namespace xmem {
          */
         rw_mode_t getRWMode() const;
 
+        uint64_t getPerfStat(uint32_t index) const;
+
     protected:
     
         /**
@@ -329,6 +331,7 @@ namespace xmem {
         std::string metric_units_; /**< String representing the units of measurement for the metric. */
         std::vector<double> mean_dram_power_socket_; /**< The mean DRAM power in this benchmark, per socket. */
         std::vector<double> peak_dram_power_socket_; /**< The peak DRAM power in this benchmark, per socket. */
+        std::vector<uint64_t> perf_stat_;
 
         //Metadata
         std::string name_; /**< Name of this benchmark. */

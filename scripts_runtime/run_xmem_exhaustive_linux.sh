@@ -31,7 +31,7 @@
 
 ARGC=$# # Get number of arguments excluding arg0 (script name itself)
 
-if [[ "$ARGC" != 5 ]]; then # Bad number of arguments
+if [[ "$ARGC" != 4 ]]; then # Bad number of arguments
 	echo "Author: Mark Gottscho"
 	echo "mgottscho@ucla.edu"
 	echo ""
@@ -42,8 +42,7 @@ fi
 xmem_dir=$1
 arch=$2
 max_num_threads=$3
-max_working_set_size_KB=$4 # I do not use this value
-output_dir=$5
+output_dir=$4
 
 mkdir -p $output_dir
 
@@ -58,7 +57,7 @@ uname -n >> $output_dir/uname.txt
     for working_set_size_KB in ${array_working_set_size_KB[@]}; do
 		echo $working_set_size_KB KB, $num_threads thread\(s\)...
         # Large pages are not used by default. If you want them, specify -L.
-		$xmem_dir/bin/xmem-linux-$arch -C0 -t -l -c 64 -R -W -r -s -v -u -n 5 -w$working_set_size_KB -j$max_num_threads -f $output_dir/xmem_w$working_set_size_KB\_j$num_threads\.csv > $output_dir/xmem_w$working_set_size_KB\_j$num_threads\.txt 2>&1
+		$xmem_dir/bin/xmem-linux-$arch -l -c 64 -R -s -v -u -n 5 -w$working_set_size_KB -j$max_num_threads -f $output_dir/xmem_w$working_set_size_KB\_j$num_threads\.csv > $output_dir/xmem_w$working_set_size_KB\_j$max_num_threads\.txt 2>&1
 
 		# let "working_set_size_KB=$working_set_size_KB*2"
         sleep 10

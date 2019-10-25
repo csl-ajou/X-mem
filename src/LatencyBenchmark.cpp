@@ -412,6 +412,11 @@ bool LatencyBenchmark::runCore() {
         tick_t lat_elapsed_dummy_ticks = workers[0]->getElapsedDummyTicks();
         uint32_t lat_bytes_per_pass = workers[0]->getBytesPerPass();
 
+        for (uint32_t i = 0; i < NUM_COUNTERS; i++)
+            perf_stat_[i] = workers[0]->getEventStat(i);
+
+
+
         // lat_bytes_per_pass is 64 as well but the thing is that
         // random would touch the same cache line so it would get
         // cache advantages

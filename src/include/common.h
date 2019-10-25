@@ -459,6 +459,14 @@ namespace xmem {
         NUM_EXTENSIONS
     } ext_t;
 
+    typedef enum {
+        LOCAL_DRAM_ACCESS = 0,
+        LOCAL_PMM_ACCESS,
+        REMOTE_DRAM_ACCESS,
+        REMOTE_PMM_ACCESS,
+        NUM_COUNTERS
+    } perf_stat_t;
+
     /**
     * @brief Prints a basic welcome message to the console with useful information.
     */

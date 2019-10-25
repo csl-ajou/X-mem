@@ -65,15 +65,6 @@ static long perf_event_open(struct perf_event_attr *hw_event, pid_t pid,
 	return ret;
 }
 
-enum dram_cache_stats {
-    LOCAL_DRAM_ACCESS = 0,
-    LOCAL_PMM_ACCESS,
-    REMOTE_DRAM_ACCESS,
-    REMOTE_PMM_ACCESS,
-    NUM_COUNTERS
-};
-
-
 using namespace xmem;
 
 LatencyWorker::LatencyWorker(
@@ -114,6 +105,7 @@ void LatencyWorker::run() {
     tick_t elapsed_ticks = 0;
     tick_t elapsed_dummy_ticks = 0;
     tick_t adjusted_ticks = 0;
+
     bool warning = false;
     void* mem_array = NULL;
     size_t len = 0;
@@ -121,7 +113,7 @@ void LatencyWorker::run() {
 
     // AHN: perf related data structures
     struct perf_event_attr pe[NUM_COUNTERS];
-    long long perf_count[NUM_COUNTERS];
+    uint64_t perf_count[NUM_COUNTERS];
 	int perf_fd[NUM_COUNTERS];
 
     for (uint32_t i = 0; i < NUM_COUNTERS; i++) {
@@ -276,6 +268,8 @@ void LatencyWorker::run() {
         bytes_per_pass_ = bytes_per_pass;
         completed_ = true;
         passes_ = passes;
+        for (uint32_t i = 0; i < NUM_COUNTERS; i++)
+            event_stat_[i] = perf_count[i];
         releaseLock();
     }
 }

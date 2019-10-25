@@ -68,7 +68,8 @@ namespace xmem {
         MEMORY_NUMA_NODE_AFFINITY,
         USE_READS,
         USE_WRITES,
-        STRIDE_SIZE
+        STRIDE_SIZE,
+        PERF_FILE
     };
 
     /**
@@ -81,6 +82,7 @@ namespace xmem {
         { CHUNK_SIZE, 0, "c", "chunk_size", MyArg::PositiveInteger, "    -c, --chunk_size    \tA chunk size in bits to use for load traffic-generating threads used in throughput and loaded latency benchmarks. A chunk is the size of each memory access in a benchmark. Allowed values: 32 64 128 256 and 512 (platform dependent). Note that some chunk sizes may not be supported on all hardware. 32-bit chunks are not compatible with random-access patterns on 64-bit machines; these combinations of settings will be skipped if they occur. DEFAULT: 64 on 64-bit systems, 32 on 32-bit systems."},
         { EXTENSION, 0, "e", "extension", MyArg::NonnegativeInteger, "    -e, --extension    \tRun an X-Mem extension defined by the user at build time. The integer argument specifies a single unique extension. This option may be included multiple times. Note that the extension behavior may or may not depend on the other X-Mem options as its semantics are defined by the extension author." },
         { OUTPUT_FILE, 0, "f", "output_file", MyArg::Required, "    -f, --output_file    \tGenerate an output file in CSV format using the given filename." },
+        { PERF_FILE, 0, "p", "perf_file", MyArg::Required, "    -p, --perf_file    \tGenerate a perf output file in CSV format using the given filename." },
         { HELP, 0, "h", "help", Arg::None, "    -h, --help    \tPrint X-Mem usage and exit." },
         { BASE_TEST_INDEX, 0, "i", "base_test_index", MyArg::NonnegativeInteger, "    -i, --base_test_index    \tBase index for the first benchmark to run. This option is provided for user convenience in enumerating benchmark tests across several subsequent runs of X-Mem. DEFAULT: 1" },
         { NUM_WORKER_THREADS, 1, "j", "num_worker_threads", MyArg::PositiveInteger, "    -j, --num_worker_threads    \tNumber of worker threads to use in benchmarks. This may not exceed the number of logical CPUs in the system. For throughput benchmarks, this is the number of independent load-generating threads. For latency benchmarks, this is the number of independent load-generating threads plus one latency measurement thread. In latency benchmarks, 1 worker thread indicates no loading is applied. DEFAULT: 1" },
@@ -292,16 +294,34 @@ namespace xmem {
         std::string getOutputFilename() const { return filename_; }
 
         /**
+         * @brief Gets the output filename to use, if applicable.
+         * @returns The output filename to use if useOutputFile() returns true. Otherwise return value is "".
+         */
+        std::string getPerfFilename() const { return perf_filename_; }
+
+        /**
          * @brief Determines whether to generate an output CSV file.
          * @returns True if an output file should be used.
          */
         bool useOutputFile() const { return use_output_file_; }
 
         /**
+         * @brief Determines whether to generate a perf output CSV file.
+         * @returns True if an output file should be used.
+         */
+        bool usePerfFile() const { return use_perf_file_; }
+
+        /**
          * @brief Changes whether an output file should be used.
          * @param use If true, then use the output file.
          */
         void setUseOutputFile(bool use) { use_output_file_ = use; }
+
+        /**
+         * @brief Changes whether an output file should be used.
+         * @param use If true, then use the output file.
+         */
+        void setUsePerfFile(bool use) { use_perf_file_ = use; }
 
         /** 
          * @brief Determines whether X-Mem is in verbose mode.
@@ -430,7 +450,9 @@ namespace xmem {
         bool use_sequential_access_pattern_; /**< If true, run throughput benchmarks with sequential access pattern. */
         uint32_t starting_test_index_; /**< Numerical index to use for the first test. This is an aid for end-user interpreting and post-processing of result CSV file, if relevant. */
         std::string filename_; /**< The output filename if applicable. */
+        std::string perf_filename_; /**< The perf output filename if applicable. */
         bool use_output_file_; /**< If true, generate a CSV output file for results. */
+        bool use_perf_file_; /**< If true, generate a perf CSV output file for results. */
         bool verbose_; /**< If true, then console reporting should be more detailed. */
         bool use_large_pages_; /**< If true, then large pages should be used. */
         bool use_reads_; /**< If true, throughput benchmarks should use reads. */

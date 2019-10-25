@@ -38,6 +38,7 @@
 
 //Libraries
 #include <cstdint>
+#include <vector>
 
 namespace xmem {
     /** 
@@ -104,6 +105,8 @@ namespace xmem {
              */
             tick_t getAdjustedTicks();
 
+            uint64_t getEventStat(uint32_t index);
+
             /**
              * @brief Indicates whether worker's results may be questionable/inaccurate/invalid.
              * @returns True if the worker's results had a warning.
@@ -120,6 +123,7 @@ namespace xmem {
             tick_t elapsed_ticks_; /**< Total elapsed ticks on the kernel routine. */
             tick_t elapsed_dummy_ticks_; /**< Total elapsed ticks on the dummy kernel routine. */
             tick_t adjusted_ticks_; /**< Elapsed ticks minus dummy elapsed ticks. */
+            std::vector<uint64_t> event_stat_;
             bool warning_; /**< If true, results may be suspect. */
             bool completed_; /**< If true, worker completed. */
     };

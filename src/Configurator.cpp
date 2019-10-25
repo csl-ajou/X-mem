@@ -84,7 +84,9 @@ Configurator::Configurator(
     use_sequential_access_pattern_(true),
     starting_test_index_(1),
     filename_(),
+    perf_filename_(),
     use_output_file_(false),
+    use_perf_file_(false),
     verbose_(false),
     use_large_pages_(false),
     use_reads_(true),
@@ -434,6 +436,15 @@ int32_t Configurator::configureFromInput(int argc, char* argv[]) {
 
         filename_ = options[OUTPUT_FILE].arg;
         use_output_file_ = true;
+    }
+
+    // check perffilename
+    if (options[PERF_FILE]) { //override defaults
+        if (!check_single_option_occurrence(&options[PERF_FILE]))
+            goto error;
+
+        perf_filename_ = options[PERF_FILE].arg;
+        use_perf_file_ = true;
     }
 
     //Check if reads and/or writes should be used in throughput and loaded latency benchmarks

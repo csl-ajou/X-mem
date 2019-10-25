@@ -88,6 +88,7 @@ BenchmarkManager::BenchmarkManager(
         lat_benchmarks_(),
         dram_power_readers_(),
         results_file_(),
+        perf_results_file_(),
         built_benchmarks_(false)
     {
     //Set up DRAM power measurement
@@ -138,6 +139,16 @@ BenchmarkManager::BenchmarkManager(
         results_file_ << "Notes,";
         results_file_ << std::endl;
     }
+
+    if (config_.usePerfFile()) {
+        perf_results_file_.open(config_.getPerfFilename().c_str(), std::fstream::out);
+        if (!perf_results_file_.is_open()) {
+            config_.setUsePerfFile(false);
+            std::cerr << "WARNING: Failed to open " << config_.getPerfFilename() << " for writing! No results file will be generated." << std::endl;
+            perf_results_file_ << "local_hit;local_miss;remote_hit;remote_miss";
+            perf_results_file_ << std::endl;
+        }
+    }
 }
 
 BenchmarkManager::~BenchmarkManager() {
@@ -173,6 +184,10 @@ BenchmarkManager::~BenchmarkManager() {
     //Close results file
     if (results_file_.is_open())
         results_file_.close();
+
+    //Close results file
+    if (perf_results_file_.is_open())
+        perf_results_file_.close();
 }
 
 bool BenchmarkManager::runAll() {
@@ -414,7 +429,16 @@ bool BenchmarkManager::runLatencyBenchmarks() {
             results_file_ << "" << ",";
             results_file_ << std::endl;
         }
+
+        if (config_.usePerfFile()) {
+            for (uint32_t j = 0; j < NUM_COUNTERS; j++) {
+                perf_results_file_ << lat_benchmarks_[i]->getPerfStat(j) << ";";
+            }
+            perf_results_file_ << std::endl;
+        }
     }
+
+
 
     if (g_verbose)
         std::cout << std::endl << "Done running latency benchmarks." << std::endl;

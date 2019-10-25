@@ -85,6 +85,7 @@ Benchmark::Benchmark(
         metric_units_(metric_units),
         mean_dram_power_socket_(),
         peak_dram_power_socket_(),
+        perf_stat_(),
         name_(name),
         obj_valid_(false),
         has_run_(false),
@@ -93,6 +94,8 @@ Benchmark::Benchmark(
     
     for (uint32_t i = 0; i < iterations_; i++) 
         metric_on_iter_.push_back(-1);
+    for (int32_t i = 0; i < NUM_COUNTERS; i++)
+        perf_stat_.push_back(0);
 }
 
 Benchmark::~Benchmark() {
@@ -290,6 +293,13 @@ void Benchmark::reportResults() const {
 bool Benchmark::isValid() const { return obj_valid_; }
 
 bool Benchmark::hasRun() const { return has_run_; }
+
+uint64_t Benchmark::getPerfStat(uint32_t index) const {
+    if (has_run_)
+        return perf_stat_[index];
+    else
+        return -1;
+}
 
 double Benchmark::getMetricOnIter(uint32_t iter) const {
     if (has_run_ && iter - 1 <= iterations_)

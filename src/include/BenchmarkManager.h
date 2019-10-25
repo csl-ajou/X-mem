@@ -123,6 +123,7 @@ namespace xmem {
         std::vector<LatencyBenchmark*> lat_benchmarks_; /**< Set of latency benchmarks. */
         std::vector<PowerReader*> dram_power_readers_; /**< Set of power measurement objects for DRAM on each NUMA node. */
         std::fstream results_file_; /**< The results CSV file. */
+        std::fstream perf_results_file_; /**< The results CSV file. */
         bool built_benchmarks_; /**< If true, finished building all benchmarks. */
     };
 };

@@ -48,9 +48,14 @@ MemoryWorker::MemoryWorker(
         elapsed_ticks_(0),
         elapsed_dummy_ticks_(0),
         adjusted_ticks_(0),
+        event_stat_(),
         warning_(false),
         completed_(false)
+
     {
+    for (uint32_t i = 0; i < NUM_COUNTERS; i++)
+        event_stat_.push_back(0);
+
 }
 
 MemoryWorker::~MemoryWorker() {
@@ -113,6 +118,15 @@ tick_t MemoryWorker::getAdjustedTicks() {
         releaseLock();
     }
 
+    return retval;
+}
+
+uint64_t MemoryWorker::getEventStat(uint32_t index) {
+    uint64_t retval = 0;
+    if (acquireLock(-1)) {
+        retval = event_stat_[index];
+        releaseLock();
+    }
     return retval;
 }
 
