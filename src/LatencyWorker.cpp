@@ -43,8 +43,34 @@
 #endif
 
 #ifdef __gnu_linux__
+#include <string.h>
 #include <unistd.h>
+#include <sys/ioctl.h>
+#include <asm/unistd.h>
+#include <linux/perf_event.h>
 #endif
+
+/*
+ * AHN: perf measurement
+ */
+static long perf_event_open(struct perf_event_attr *hw_event, pid_t pid,
+		int cpu, int group_fd, unsigned long flags)
+{
+	int ret;
+
+	ret = syscall(__NR_perf_event_open, hw_event, pid, cpu,
+			group_fd, flags);
+	return ret;
+}
+
+enum dram_cache_stats {
+    LOCAL_DRAM_ACCESS = 0,
+    LOCAL_PMM_ACCESS,
+    REMOTE_DRAM_ACCESS,
+    REMOTE_PMM_ACCESS,
+    NUM_COUNTERS
+};
+
 
 using namespace xmem;
 
@@ -90,6 +116,40 @@ void LatencyWorker::run() {
     void* mem_array = NULL;
     size_t len = 0;
     tick_t target_ticks = g_ticks_per_ms * BENCHMARK_DURATION_MS; //Rough target run duration in ticks
+
+    // AHN: perf related data structures
+    struct perf_event_attr pe[NUM_COUNTERS];
+    long long perf_count[NUM_COUNTERS];
+	int perf_fd[NUM_COUNTERS];
+
+    for (uint32_t i = 0; i < NUM_COUNTERS; i++) {
+        memset(&pe[i], 0, sizeof(struct perf_event_attr));
+        pe[i].type = PERF_TYPE_RAW;
+        pe[i].size = sizeof(struct perf_event_attr);
+        pe[i].disabled = 1;
+        pe[i].inherit = 1;
+        pe[i].exclude_kernel = 0;
+        pe[i].exclude_hv = 1;
+
+        if ( i == LOCAL_DRAM_ACCESS ) {
+            pe[i].config = 0x1d3;
+        } else if ( i == LOCAL_PMM_ACCESS ) {
+            pe[i].config = 0x80d1;
+        } else if ( i == REMOTE_DRAM_ACCESS ) {
+            pe[i].config = 0x2d3;
+        } else if ( i == REMOTE_PMM_ACCESS ) {
+            pe[i].config = 0x10d3;
+        }
+    }
+
+    for (uint32_t i = 0; i < NUM_COUNTERS; i++) {
+        perf_fd[i] = perf_event_open(&pe[i], 0, -1, -1, 0);
+        if (perf_fd[i] == -1) {
+            fprintf(stderr, "Error opening leader %llx\n", pe[i].config);
+            fprintf(stderr, "You may not run X-mem with root permission.\n");
+            exit(EXIT_FAILURE);
+        }
+    }
     
     //Grab relevant setup state thread-safely and keep it local
     if (acquireLock(-1)) {
@@ -126,6 +186,14 @@ void LatencyWorker::run() {
         forwSequentialRead_Word32(prime_start_address, prime_end_address); //dependent reads on the memory, make sure caches are ready, coherence, etc...
     }
 
+    // AHN: Start the measurement
+    for (uint32_t i = 0; i < NUM_COUNTERS; i++) {
+        ioctl(perf_fd[i], PERF_EVENT_IOC_RESET, 0);
+        ioctl(perf_fd[i], PERF_EVENT_IOC_ENABLE, 0);
+    }
+
+    system("numastat -p X-mem");
+
     //Run benchmark
     //Run actual version of function and loop overhead
     uintptr_t* next_address = static_cast<uintptr_t*>(mem_array); 
@@ -135,6 +203,28 @@ void LatencyWorker::run() {
         stop_tick = stop_timer();
         elapsed_ticks += (stop_tick - start_tick);
         passes+=256;
+    }
+
+    // AHN: Stop the measurement
+    for (uint32_t i = 0; i < NUM_COUNTERS; i++) {
+	    ioctl(perf_fd[i], PERF_EVENT_IOC_DISABLE, 0);
+	    read(perf_fd[i], &perf_count[i], sizeof(long long));
+
+        if ( i == LOCAL_DRAM_ACCESS ) {
+            std::cout << "LOCAL_DRAM_ACCESS: ";
+        } else if ( i == LOCAL_PMM_ACCESS ) {
+            std::cout << "LOCAL_PMM_ACCESS: ";
+        } else if ( i == REMOTE_DRAM_ACCESS ) {
+            std::cout << "REMOTE_DRAM_ACCESS: ";
+        } else if ( i == REMOTE_PMM_ACCESS ) {
+            std::cout << "REMOTE_PMM_ACCESS: ";
+        }
+
+        std::cout << perf_count[i] << std::endl;
+    }
+
+    for (uint32_t i = 0; i < NUM_COUNTERS; i++) {
+        close(perf_fd[i]);
     }
 
     //Run dummy version of function and loop overhead
