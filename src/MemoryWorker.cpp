@@ -81,8 +81,8 @@ uint32_t MemoryWorker::getBytesPerPass() {
     return retval;
 }
 
-uint32_t MemoryWorker::getPasses() {
-    uint32_t retval = 0;
+uint64_t MemoryWorker::getPasses() {
+    uint64_t retval = 0;
     if (acquireLock(-1)) {
         retval = passes_;
         releaseLock();

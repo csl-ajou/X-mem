@@ -85,7 +85,7 @@ namespace xmem {
              * @brief Gets the number of passes for this worker.
              * @returns The number of passes.
              */
-            uint32_t getPasses();
+            uint64_t getPasses();
 
             /**
              * @brief Gets the elapsed ticks for this worker on the core benchmark kernel.
@@ -119,7 +119,7 @@ namespace xmem {
             size_t len_; /**< The length of the memory region for this worker. */
             int32_t cpu_affinity_; /**< The logical CPU affinity for this worker. */
             uint32_t bytes_per_pass_; /**< Number of bytes accessed in each kernel pass. */
-            uint32_t passes_; /**< Number of passes. */
+            uint64_t passes_; /**< Number of passes. */
             tick_t elapsed_ticks_; /**< Total elapsed ticks on the kernel routine. */
             tick_t elapsed_dummy_ticks_; /**< Total elapsed ticks on the dummy kernel routine. */
             tick_t adjusted_ticks_; /**< Elapsed ticks minus dummy elapsed ticks. */

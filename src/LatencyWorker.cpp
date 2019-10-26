@@ -97,14 +97,15 @@ void LatencyWorker::run() {
     RandomFunction kernel_dummy_fptr = NULL;
     void* prime_start_address = NULL;
     void* prime_end_address = NULL;
-    uint32_t bytes_per_pass = 0;
-    uint32_t passes = 0;
-    uint32_t p = 0;
+    uint64_t bytes_per_pass = 0;
+    uint64_t passes = 0;
+    uint64_t p = 0;
     tick_t start_tick = 0;
     tick_t stop_tick = 0;
     tick_t elapsed_ticks = 0;
     tick_t elapsed_dummy_ticks = 0;
     tick_t adjusted_ticks = 0;
+    bool full_touch = false;
 
     bool warning = false;
     void* mem_array = NULL;
@@ -183,7 +184,10 @@ void LatencyWorker::run() {
     // target_ticks now should be changed to measure a big memory size
     if (len >= 2 * GiB) {
         target_ticks = UINT64_MAX;
+        full_touch = true;
     }
+
+    std::cout << "target_ticks " << target_ticks << std::endl;
 
     // AHN: Start the measurement
     for (uint32_t i = 0; i < NUM_COUNTERS; i++) {
@@ -202,10 +206,12 @@ void LatencyWorker::run() {
         stop_tick = stop_timer();
         elapsed_ticks += (stop_tick - start_tick);
         passes += 256;
-        if (next_address == static_cast<uintptr_t*>(mem_array)) {
+        if ((full_touch == true) && (next_address == static_cast<uintptr_t*>(mem_array))) {
             break;
         }
     }
+
+    std::cout << "passes " << passes << std::endl;
 
     // AHN: Stop the measurement
     for (uint32_t i = 0; i < NUM_COUNTERS; i++) {

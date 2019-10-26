@@ -161,7 +161,7 @@ bool ThroughputBenchmark::runCore() {
                 std::cerr << "WARNING: A worker thread failed to complete correctly!" << std::endl;
 
         //Compute throughput achieved with all workers
-        uint32_t total_passes = 0;
+        uint64_t total_passes = 0;
         tick_t total_adjusted_ticks = 0;
         tick_t avg_adjusted_ticks = 0;
         tick_t total_elapsed_dummy_ticks = 0;

@@ -104,7 +104,7 @@ void LoadWorker::run() {
     void* prime_start_address = NULL;
     void* prime_end_address = NULL;
     uint32_t bytes_per_pass = 0;
-    uint32_t passes = 0;
+    uint64_t passes = 0;
     tick_t start_tick = 0;
     tick_t stop_tick = 0;
     tick_t elapsed_ticks = 0;
@@ -114,7 +114,7 @@ void LoadWorker::run() {
     void* mem_array = NULL;
     size_t len = 0;
     tick_t target_ticks = g_ticks_per_ms * BENCHMARK_DURATION_MS; //Rough target run duration in ticks
-    uint32_t p = 0;
+    uint64_t p = 0;
     bytes_per_pass = THROUGHPUT_BENCHMARK_BYTES_PER_PASS;
     
     //Grab relevant setup state thread-safely and keep it local
