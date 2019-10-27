@@ -1069,7 +1069,7 @@ bool xmem::build_random_pointer_permutation(void* start_address, void* end_addre
         case CHUNK_64b:
             for (size_t b = 0; b < num_blocks; b++) {
                 mem_region_base = reinterpret_cast<Word64_t*>(reinterpret_cast<Word64_t*>(start_address) + (num_entries * b));
-                std::cout << const_cast<uintptr_t*>(mem_region_base) << std::endl;
+                // std::cout << const_cast<uintptr_t*>(mem_region_base) << std::endl;
                 for (size_t i = 0; i < rand_num; i++) {
                     mem_region_base[traversal_order[i]*8] = reinterpret_cast<Word64_t>(
                     mem_region_base+(traversal_order[i+1]*8));
@@ -1196,28 +1196,30 @@ int32_t xmem::dummy_chasePointers(uintptr_t*, uintptr_t**, size_t len) {
 
 /* -------------------- CORE BENCHMARK ROUTINES -------------------------- */
 
-int32_t xmem::chasePointers(uintptr_t* first_address, uintptr_t** last_touched_address, size_t len) {
+int32_t xmem::chaseSeqPointers(uintptr_t* first_address, uintptr_t** last_touched_address, size_t len, uintptr_t* base_address, uint64_t *offset) {
     volatile uintptr_t* p = first_address;
-    uintptr_t* temp = NULL;
-
     // using len as pattern_mode_t
-    if (len == SEQUENTIAL) {
-        // stride 64
-        p = reinterpret_cast<uintptr_t*>(*(p + 7));
-        *last_touched_address = const_cast<uintptr_t*>(p);
-    } else if (len == RANDOM){
-        // the next pointer is random offset
-        temp = const_cast<uintptr_t*>(p);
-        std::cout << "temp " << temp << std::endl;
-        while (1) {
-            p = reinterpret_cast<uintptr_t*>(*(p));
-            if (temp == const_cast<uintptr_t*>(p)) {
-                break;
-            }
-        }
-        std::cout << "last " << const_cast<uintptr_t*>(p + 32768) << std::endl;
-        *last_touched_address = const_cast<uintptr_t*>(p + 32768);
+    // stride 64
+    p = reinterpret_cast<uintptr_t*>(*(p + 7));
+    *last_touched_address = const_cast<uintptr_t*>(p);
+    return 0;
+}
+
+int32_t xmem::chaseRandPointers(uintptr_t* first_address, uintptr_t** last_touched_address, size_t len, uintptr_t* base_address, uint64_t *offset) {
+    volatile uintptr_t* p = first_address;
+    uintptr_t *temp = const_cast<uintptr_t*>(p);
+    // std::cout << "temp " << const_cast<uintptr_t*>(p) << std::endl;
+    while (1) {
+        p = reinterpret_cast<uintptr_t*>(*(p));
+        if (temp == const_cast<uintptr_t*>(p))
+            break;
     }
+    // std::cout << "last " << const_cast<uintptr_t*>(p + 32768) << std::endl;
+    // std::cout << "base+len " << const_cast<uintptr_t*>(base_address + (len/64/8)) << std::endl;
+    *last_touched_address = const_cast<uintptr_t*>(p + 32768);
+    // std::cout << "base " << const_cast<uintptr_t*>(base_address) << std::endl;
+    if (const_cast<uintptr_t*>(base_address + len) <= const_cast<uintptr_t*>(p + 32768))
+        *last_touched_address = const_cast<uintptr_t*>(base_address);
     return 0;
 }
 

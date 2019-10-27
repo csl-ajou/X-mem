@@ -57,6 +57,7 @@ namespace xmem {
                 size_t len,
                 RandomFunction kernel_fptr,
                 RandomFunction kernel_dummy_fptr,
+                ChaseFunction chase_fptr,
                 int32_t cpu_affinity,
                 int use_sequential_kernel_fptr
             );
@@ -76,6 +77,7 @@ namespace xmem {
             int use_sequential_kernel_fptr_;
             RandomFunction kernel_fptr_; /**< Points to the memory test core routine to use of the "random" type. */
             RandomFunction kernel_dummy_fptr_; /**< Points to a dummy version of the memory test core routine to use of the "random" type. */
+            ChaseFunction chase_fptr_;
     };
 };
 

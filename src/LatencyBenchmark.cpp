@@ -270,8 +270,15 @@ bool LatencyBenchmark::runCore() {
     //Set up latency measurement kernel function pointers
     //These function types are `RandomFunction` but it will 
     //differently behave based on `pattern_mode_`
-    RandomFunction lat_kernel_fptr = &chasePointers;
+    RandomFunction lat_kernel_fptr = NULL;
     RandomFunction lat_kernel_dummy_fptr = &dummy_chasePointers;
+    ChaseFunction lat_chase_fptr = NULL;
+
+    if (pattern_mode_ == SEQUENTIAL) {
+        lat_chase_fptr = &chaseSeqPointers;
+    } else if (pattern_mode_ == RANDOM) {
+        lat_chase_fptr = &chaseRandPointers;
+    }
 
     //Initialize memory regions for all threads by writing to them, causing the memory to be physically resident.
     forwSequentialWrite_Word32(mem_array_,
@@ -375,6 +382,7 @@ bool LatencyBenchmark::runCore() {
                                                     len_per_thread,
                                                     lat_kernel_fptr,
                                                     lat_kernel_dummy_fptr,
+                                                    lat_chase_fptr,
                                                     cpu_id, pattern_mode_));
             } else {
                 if (pattern_mode_ == SEQUENTIAL)

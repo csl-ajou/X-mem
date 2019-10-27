@@ -72,6 +72,7 @@ LatencyWorker::LatencyWorker(
         size_t len,
         RandomFunction kernel_fptr,
         RandomFunction kernel_dummy_fptr,
+        ChaseFunction chase_fptr,
         int32_t cpu_affinity,
         int use_sequential_kernel_fptr
     ) :
@@ -82,7 +83,8 @@ LatencyWorker::LatencyWorker(
         ),
         use_sequential_kernel_fptr_(use_sequential_kernel_fptr),
         kernel_fptr_(kernel_fptr),
-        kernel_dummy_fptr_(kernel_dummy_fptr)
+        kernel_dummy_fptr_(kernel_dummy_fptr),
+        chase_fptr_(chase_fptr)
     {
 }
 
@@ -95,6 +97,7 @@ void LatencyWorker::run() {
     int use_sequential_kernel_fptr = 0;
     RandomFunction kernel_fptr = NULL;
     RandomFunction kernel_dummy_fptr = NULL;
+    ChaseFunction chase_fptr = NULL;
     void* prime_start_address = NULL;
     void* prime_end_address = NULL;
     uint64_t bytes_per_pass = 0;
@@ -154,6 +157,7 @@ void LatencyWorker::run() {
         cpu_affinity = cpu_affinity_;
         kernel_fptr = kernel_fptr_;
         kernel_dummy_fptr = kernel_dummy_fptr_;
+        chase_fptr = chase_fptr_;
         use_sequential_kernel_fptr = use_sequential_kernel_fptr_;
         prime_start_address = mem_array_;
         prime_end_address = reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array_) + len_);
@@ -183,7 +187,7 @@ void LatencyWorker::run() {
 
     // target_ticks now should be changed to measure a big memory size
     // if ((len >= 2 * GiB) && (use_sequential_kernel_fptr == SEQUENTIAL)) {
-    if ((len >= 2 * GiB)) {
+    if ((len >= 64 * GiB)) {
         target_ticks = UINT64_MAX;
         full_touch = true;
     }
@@ -201,10 +205,13 @@ void LatencyWorker::run() {
     //Run benchmark
     //Run actual version of function and loop overhead
     uintptr_t* next_address = static_cast<uintptr_t*>(mem_array); 
+    uintptr_t* base_address = next_address;
+    uint64_t offset = 0;
     while (elapsed_ticks < target_ticks) {
         if (use_sequential_kernel_fptr == SEQUENTIAL) {
             start_tick = start_timer();
-            UNROLL256((*kernel_fptr)(next_address, &next_address, use_sequential_kernel_fptr);)
+            UNROLL256((*chase_fptr)(next_address, &next_address, use_sequential_kernel_fptr,
+                        NULL, NULL);)
             stop_tick = stop_timer();
             elapsed_ticks += (stop_tick - start_tick);
             passes += 256;
@@ -212,11 +219,11 @@ void LatencyWorker::run() {
                 break;
         } else if (use_sequential_kernel_fptr == RANDOM) {
             start_tick = start_timer();
-            (*kernel_fptr)(next_address, &next_address, use_sequential_kernel_fptr);
+            (*chase_fptr)(next_address, &next_address, len/64/8, base_address, &offset);
             stop_tick = stop_timer();
             elapsed_ticks += (stop_tick - start_tick);
-            passes += 1;
-            if ((full_touch == true) && (len <= passes * 4096 * 64 * 64))
+            passes += 4096;
+            if ((full_touch == true) && (len <= passes * 64 * 64))
                 break;
         }
     }

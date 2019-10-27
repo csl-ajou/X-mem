@@ -43,7 +43,8 @@ namespace xmem {
 
     
     typedef int32_t(*SequentialFunction)(void*, void*);
-    typedef int32_t(*RandomFunction)(uintptr_t*, uintptr_t**, size_t); 
+    typedef int32_t(*RandomFunction)(uintptr_t*, uintptr_t**, size_t);
+    typedef int32_t(*ChaseFunction)(uintptr_t*, uintptr_t**, size_t, uintptr_t*, uint64_t*);
     
     /**
      * @brief Determines which sequential memory access kernel to use based on the read/write mode, chunk size, and stride size.
@@ -101,10 +102,9 @@ namespace xmem {
      * @param len The number of pointers to deference in a chain-like fashion.
      * @returns Undefined.
      */
-    int32_t chasePointers(uintptr_t* first_address, uintptr_t** last_touched_address, size_t len);
-    
-    
-    
+    int32_t chaseSeqPointers(uintptr_t* first_address, uintptr_t** last_touched_address, size_t len, uintptr_t *base_address, uint64_t *offset);
+    int32_t chaseRandPointers(uintptr_t* first_address, uintptr_t** last_touched_address, size_t len, uintptr_t *base_address, uint64_t *offset);
+
     /***********************************************************************
      ***********************************************************************
      ******************* THROUGHPUT-RELATED BENCHMARK KERNELS **************

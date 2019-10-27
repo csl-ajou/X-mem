@@ -97,8 +97,16 @@ bool DelayInjectedLoadedLatencyBenchmark::runCore() {
     size_t len_per_thread = len_ / num_worker_threads_; //Carve up memory space so each worker has its own area to play in
 
     //Set up latency measurement kernel function pointers
-    RandomFunction lat_kernel_fptr = &chasePointers;
+    // RandomFunction lat_kernel_fptr = &chasePointers;
+    RandomFunction lat_kernel_fptr = NULL;
     RandomFunction lat_kernel_dummy_fptr = &dummy_chasePointers;
+    ChaseFunction lat_chase_fptr = NULL;
+
+    if (pattern_mode_ == SEQUENTIAL) {
+        lat_chase_fptr = &chaseSeqPointers;
+    } else if (pattern_mode_ == RANDOM) {
+        lat_chase_fptr = &chaseRandPointers;
+    }
 
     //Initialize memory regions for all threads by writing to them, causing the memory to be physically resident.
     forwSequentialWrite_Word32(mem_array_,
@@ -387,6 +395,7 @@ bool DelayInjectedLoadedLatencyBenchmark::runCore() {
                                                     len_per_thread,
                                                     lat_kernel_fptr,
                                                     lat_kernel_dummy_fptr,
+                                                    lat_chase_fptr,
                                                     cpu_id, pattern_mode_));
             } else {
                 workers.push_back(new LoadWorker(threadmem_array_,
