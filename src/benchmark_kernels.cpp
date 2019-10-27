@@ -984,6 +984,10 @@ bool xmem::build_random_pointer_permutation(void* start_address, void* end_addre
 
     size_t length = reinterpret_cast<uint8_t*>(end_address) - reinterpret_cast<uint8_t*>(start_address); //length of region in bytes
     size_t num_pointers = 0; //Number of pointers that fit into the memory region of interest
+    uint64_t num_blocks = 0;
+    uint32_t rand_num = 4096;
+    uint32_t num_entries = rand_num * 8;
+
     switch (chunk_size) {
         //special case on 32-bit architectures only.
 #ifndef HAS_WORD_64
@@ -1025,29 +1029,33 @@ bool xmem::build_random_pointer_permutation(void* start_address, void* end_addre
     }
             
     std::mt19937_64 gen(time(NULL)); //Mersenne Twister random number generator, seeded at current time
-    
+
     //Do a random shuffle of memory pointers. Make sure that the result
     //is a hamiltonian cycle so that pointer chasing will touch the full
     //working set.
 
+    num_pointers = length / 64;
+    num_blocks = num_pointers / num_entries / 8; // (4096 * 8 * 8)
+    // num_entries should be divided 8 because of 64 byte cacheline
+
     //Represent traversal order of pointers in an array external to the
     //pointers
-    int *traversal_order = new int[num_pointers + 1];
+    // int *traversal_order = new int[num_pointers + 1];
+    int *traversal_order = new int[rand_num + 1];
 
     if (g_verbose)
         std::cout << "num_pointers: " << num_pointers << std::endl;
 
     //start with sequential order 0, 1, 2, ...., num_pointers-1
-    for(size_t i = 0; i < num_pointers; i++)
+    for(size_t i = 0; i < rand_num; i++)
         traversal_order[i] = i;
     //...and back to 0
-    traversal_order[num_pointers] = 0;
+    traversal_order[rand_num] = 0;
 
     //shuffle the elements 1,2,...,num-pointers-1,
     //thereby preserving the property of a hamiltonian cycle starting
     //and ending at 0
-    std::shuffle(traversal_order + 1,
-    traversal_order + (num_pointers - 1), gen);
+    std::shuffle(traversal_order + 1, traversal_order + (rand_num - 1), gen);
 
     //finally, impose the traversal order within the pointer array
 
@@ -1059,9 +1067,20 @@ bool xmem::build_random_pointer_permutation(void* start_address, void* end_addre
     switch (chunk_size) {
 #ifdef HAS_WORD_64
         case CHUNK_64b:
-            for (size_t i = 0; i < num_pointers; i++) {
-                mem_region_base[traversal_order[i]] = reinterpret_cast<Word64_t>(
-		    mem_region_base+traversal_order[i+1]);
+            for (size_t b = 0; b < num_blocks; b++) {
+                mem_region_base = reinterpret_cast<Word64_t*>(reinterpret_cast<Word64_t*>(start_address) + (num_entries * b));
+                std::cout << const_cast<uintptr_t*>(mem_region_base) << std::endl;
+                for (size_t i = 0; i < rand_num; i++) {
+                    mem_region_base[traversal_order[i]*8] = reinterpret_cast<Word64_t>(
+                    mem_region_base+(traversal_order[i+1]*8));
+                        mem_region_base[(i*8)+1] = 0xFFFFFFFFFFFFFFFF; //1-fill upper 448 bits
+                        mem_region_base[(i*8)+2] = 0xFFFFFFFFFFFFFFFF;
+                        mem_region_base[(i*8)+3] = 0xFFFFFFFFFFFFFFFF;
+                        mem_region_base[(i*8)+4] = 0xFFFFFFFFFFFFFFFF;
+                        mem_region_base[(i*8)+5] = 0xFFFFFFFFFFFFFFFF;
+                        mem_region_base[(i*8)+6] = 0xFFFFFFFFFFFFFFFF;
+                        mem_region_base[(i*8)+7] = 0xFFFFFFFFFFFFFFFF;
+                }
             }
             break;
 #else //special case for 32-bit architectures
@@ -1179,16 +1198,26 @@ int32_t xmem::dummy_chasePointers(uintptr_t*, uintptr_t**, size_t len) {
 
 int32_t xmem::chasePointers(uintptr_t* first_address, uintptr_t** last_touched_address, size_t len) {
     volatile uintptr_t* p = first_address;
+    uintptr_t* temp = NULL;
 
     // using len as pattern_mode_t
     if (len == SEQUENTIAL) {
         // stride 64
         p = reinterpret_cast<uintptr_t*>(*(p + 7));
+        *last_touched_address = const_cast<uintptr_t*>(p);
     } else if (len == RANDOM){
         // the next pointer is random offset
-        p = reinterpret_cast<uintptr_t*>(*p);
+        temp = const_cast<uintptr_t*>(p);
+        std::cout << "temp " << temp << std::endl;
+        while (1) {
+            p = reinterpret_cast<uintptr_t*>(*(p));
+            if (temp == const_cast<uintptr_t*>(p)) {
+                break;
+            }
+        }
+        std::cout << "last " << const_cast<uintptr_t*>(p + 32768) << std::endl;
+        *last_touched_address = const_cast<uintptr_t*>(p + 32768);
     }
-    *last_touched_address = const_cast<uintptr_t*>(p);
     return 0;
 }
 

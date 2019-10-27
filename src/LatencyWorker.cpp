@@ -182,7 +182,8 @@ void LatencyWorker::run() {
     }
 
     // target_ticks now should be changed to measure a big memory size
-    if (len >= 2 * GiB) {
+    // if ((len >= 2 * GiB) && (use_sequential_kernel_fptr == SEQUENTIAL)) {
+    if ((len >= 2 * GiB)) {
         target_ticks = UINT64_MAX;
         full_touch = true;
     }
@@ -201,17 +202,25 @@ void LatencyWorker::run() {
     //Run actual version of function and loop overhead
     uintptr_t* next_address = static_cast<uintptr_t*>(mem_array); 
     while (elapsed_ticks < target_ticks) {
-        start_tick = start_timer();
-        UNROLL256((*kernel_fptr)(next_address, &next_address, use_sequential_kernel_fptr);)
-        stop_tick = stop_timer();
-        elapsed_ticks += (stop_tick - start_tick);
-        passes += 256;
-        if ((full_touch == true) && (next_address == static_cast<uintptr_t*>(mem_array))) {
-            break;
+        if (use_sequential_kernel_fptr == SEQUENTIAL) {
+            start_tick = start_timer();
+            UNROLL256((*kernel_fptr)(next_address, &next_address, use_sequential_kernel_fptr);)
+            stop_tick = stop_timer();
+            elapsed_ticks += (stop_tick - start_tick);
+            passes += 256;
+            if ((full_touch == true) && (next_address == static_cast<uintptr_t*>(mem_array)))
+                break;
+        } else if (use_sequential_kernel_fptr == RANDOM) {
+            start_tick = start_timer();
+            (*kernel_fptr)(next_address, &next_address, use_sequential_kernel_fptr);
+            stop_tick = stop_timer();
+            elapsed_ticks += (stop_tick - start_tick);
+            passes += 1;
+            if ((full_touch == true) && (len <= passes * 4096 * 64 * 64))
+                break;
         }
     }
 
-    std::cout << "passes " << passes << std::endl;
 
     // AHN: Stop the measurement
     for (uint32_t i = 0; i < NUM_COUNTERS; i++) {
