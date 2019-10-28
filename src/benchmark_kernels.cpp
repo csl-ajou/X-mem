@@ -1253,10 +1253,12 @@ int32_t xmem::dummy_forwSequentialLoop_Word32(void* start_address, void* end_add
 #ifdef HAS_WORD_64
 int32_t xmem::dummy_forwSequentialLoop_Word64(void* start_address, void* end_address) {
     volatile int32_t placeholder = 0; //Try our best to defeat compiler optimizations
+    // volatile Word64_t* wordptr = static_cast<Word64_t*>(start_address);
     for (volatile Word64_t* wordptr = static_cast<Word64_t*>(start_address), *endptr = static_cast<Word64_t*>(end_address); wordptr < endptr;) {
-        UNROLL512(wordptr++;) 
+        UNROLL64(wordptr = wordptr + 8;)
         placeholder = 0;
     }
+    // wordptr = wordptr + 8;
     return placeholder;
 }
 #endif
@@ -2193,9 +2195,11 @@ int32_t xmem::forwSequentialRead_Word32(void* start_address, void* end_address) 
 #ifdef HAS_WORD_64
 int32_t xmem::forwSequentialRead_Word64(void* start_address, void* end_address) {
     register Word64_t val;
+    // volatile Word64_t* wordptr = static_cast<Word64_t*>(start_address);
     for (volatile Word64_t* wordptr = static_cast<Word64_t*>(start_address), *endptr = static_cast<Word64_t*>(end_address); wordptr < endptr;) {
-        UNROLL512(val = *wordptr++;)
+        UNROLL64(wordptr = wordptr + 8; val = *wordptr;)
     }
+    // wordptr = wordptr + 8; val = *wordptr;
     return 0;
 }
 #endif

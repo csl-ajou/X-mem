@@ -43,8 +43,27 @@
 #endif
 
 #ifdef __gnu_linux__
+#include <string.h>
 #include <unistd.h>
+#include <sys/ioctl.h>
+#include <asm/unistd.h>
+#include <linux/perf_event.h>
 #endif
+
+#define GiB (1024*1024*1024UL)
+
+/*
+ * AHN: perf measurement
+ */
+static long perf_event_open(struct perf_event_attr *hw_event, pid_t pid,
+		int cpu, int group_fd, unsigned long flags)
+{
+	int ret;
+
+	ret = syscall(__NR_perf_event_open, hw_event, pid, cpu,
+			group_fd, flags);
+	return ret;
+}
 
 using namespace xmem;
 
@@ -115,7 +134,43 @@ void LoadWorker::run() {
     size_t len = 0;
     tick_t target_ticks = g_ticks_per_ms * BENCHMARK_DURATION_MS; //Rough target run duration in ticks
     uint64_t p = 0;
+    bool full_touch = false;
     bytes_per_pass = THROUGHPUT_BENCHMARK_BYTES_PER_PASS;
+    // bytes_per_pass = 64;
+
+    // AHN: perf related data structures
+    struct perf_event_attr pe[NUM_COUNTERS];
+    uint64_t perf_count[NUM_COUNTERS];
+    int perf_fd[NUM_COUNTERS];
+
+    for (uint32_t i = 0; i < NUM_COUNTERS; i++) {
+        memset(&pe[i], 0, sizeof(struct perf_event_attr));
+        pe[i].type = PERF_TYPE_RAW;
+        pe[i].size = sizeof(struct perf_event_attr);
+        pe[i].disabled = 1;
+        pe[i].inherit = 1;
+        pe[i].exclude_kernel = 0;
+        pe[i].exclude_hv = 1;
+
+        if ( i == LOCAL_DRAM_ACCESS ) {
+            pe[i].config = 0x1d3;
+        } else if ( i == LOCAL_PMM_ACCESS ) {
+            pe[i].config = 0x80d1;
+        } else if ( i == REMOTE_DRAM_ACCESS ) {
+            pe[i].config = 0x2d3;
+        } else if ( i == REMOTE_PMM_ACCESS ) {
+            pe[i].config = 0x10d3;
+        }
+    }
+
+    for (uint32_t i = 0; i < NUM_COUNTERS; i++) {
+        perf_fd[i] = perf_event_open(&pe[i], 0, -1, -1, 0);
+        if (perf_fd[i] == -1) {
+            fprintf(stderr, "Error opening leader %llx\n", pe[i].config);
+            fprintf(stderr, "You may not run X-mem with root permission.\n");
+            exit(EXIT_FAILURE);
+        }
+    }
     
     //Grab relevant setup state thread-safely and keep it local
     if (acquireLock(-1)) {
@@ -150,9 +205,21 @@ void LoadWorker::run() {
 #endif
         std::cerr << "WARNING: Failed to boost scheduling priority. Perhaps running in Administrator mode would help." << std::endl;
 
+    if ((len >= 2*GiB)) {
+        target_ticks = UINT64_MAX;
+        full_touch = true;
+    }
+    std::cout << "target_ticks " << target_ticks << std::endl;
+
     //Prime memory
     for (uint32_t i = 0; i < 4; i++) {
         forwSequentialRead_Word32(prime_start_address, prime_end_address); //dependent reads on the memory, make sure caches are ready, coherence, etc...
+    }
+
+    // AHN: Start the measurement
+    for (uint32_t i = 0; i < NUM_COUNTERS; i++) {
+        ioctl(perf_fd[i], PERF_EVENT_IOC_RESET, 0);
+        ioctl(perf_fd[i], PERF_EVENT_IOC_ENABLE, 0);
     }
 
     //Run the benchmark!
@@ -161,13 +228,17 @@ void LoadWorker::run() {
     while (elapsed_ticks < target_ticks) {
         if (use_sequential_kernel_fptr) { //sequential function semantics
             start_tick = start_timer();
-            UNROLL1024(
-                (*kernel_fptr_seq)(start_address, end_address);
-                start_address = reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array)+(reinterpret_cast<uintptr_t>(start_address)+bytes_per_pass) % len);
-                end_address = reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(start_address) + bytes_per_pass);
+            UNROLL1024((*kernel_fptr_seq)(start_address, end_address);
+            start_address = reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array)+(reinterpret_cast<uintptr_t>(start_address)+bytes_per_pass) % len);
+            end_address = reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(start_address) + bytes_per_pass);
             )
             stop_tick = stop_timer();
+
             passes+=1024;
+            if ((full_touch == true) && 
+                    (start_address ==  reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array)))) {
+                break;
+            }
         } else { //random function semantics
             start_tick = start_timer();
             UNROLL1024((*kernel_fptr_ran)(next_address, &next_address, bytes_per_pass);)
@@ -175,6 +246,16 @@ void LoadWorker::run() {
             passes+=1024;
         }
         elapsed_ticks += (stop_tick - start_tick);
+    }
+
+    // AHN: Stop the measurement
+    for (uint32_t i = 0; i < NUM_COUNTERS; i++) {
+        ioctl(perf_fd[i], PERF_EVENT_IOC_DISABLE, 0);
+        read(perf_fd[i], &perf_count[i], sizeof(long long));
+    }
+
+    for (uint32_t i = 0; i < NUM_COUNTERS; i++) {
+        close(perf_fd[i]);
     }
 
     //Run dummy version of function and loop overhead
@@ -230,6 +311,8 @@ void LoadWorker::run() {
         bytes_per_pass_ = bytes_per_pass;
         completed_ = true;
         passes_ = passes;
+        for (uint32_t i = 0; i < NUM_COUNTERS; i++)
+            event_stat_[i] = perf_count[i];
         releaseLock();
     }
 }

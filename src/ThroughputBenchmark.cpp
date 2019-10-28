@@ -160,6 +160,8 @@ bool ThroughputBenchmark::runCore() {
             if (!worker_threads[t]->join())
                 std::cerr << "WARNING: A worker thread failed to complete correctly!" << std::endl;
 
+        system("numastat -p xmem");
+
         //Compute throughput achieved with all workers
         uint64_t total_passes = 0;
         tick_t total_adjusted_ticks = 0;
@@ -172,6 +174,22 @@ bool ThroughputBenchmark::runCore() {
             total_adjusted_ticks += workers[t]->getAdjustedTicks();
             total_elapsed_dummy_ticks += workers[t]->getElapsedDummyTicks();
             iter_warning |= workers[t]->hadWarning();
+            for (uint32_t i = 0; i < NUM_COUNTERS; i++)
+                perf_stat_[i] += workers[t]->getEventStat(i);
+        }
+
+        for (uint32_t i = 0; i < NUM_COUNTERS; i++) {
+            if ( i == LOCAL_DRAM_ACCESS ) {
+                std::cout << "LOCAL_DRAM_ACCESS: ";
+            } else if ( i == LOCAL_PMM_ACCESS ) {
+                std::cout << "LOCAL_PMM_ACCESS: ";
+            } else if ( i == REMOTE_DRAM_ACCESS ) {
+                std::cout << "REMOTE_DRAM_ACCESS: ";
+            } else if ( i == REMOTE_PMM_ACCESS ) {
+                std::cout << "REMOTE_PMM_ACCESS: ";
+            }
+
+            std::cout << perf_stat_[i] << std::endl;
         }
 
         avg_adjusted_ticks = total_adjusted_ticks / num_worker_threads_;
