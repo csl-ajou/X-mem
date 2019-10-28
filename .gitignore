@@ -79,4 +79,5 @@ logs/*
 scripts_postprocessing/*.json
 plots
 tags
+*.swp
 __pycache__
