@@ -986,7 +986,7 @@ bool xmem::build_random_pointer_permutation(void* start_address, void* end_addre
     size_t num_pointers = 0; //Number of pointers that fit into the memory region of interest
     uint64_t num_blocks = 0;
     uint32_t rand_num = 4096;
-    uint32_t num_entries = rand_num * 8;
+    uint32_t num_entries = rand_num * 64;
 
     switch (chunk_size) {
         //special case on 32-bit architectures only.
@@ -1034,8 +1034,9 @@ bool xmem::build_random_pointer_permutation(void* start_address, void* end_addre
     //is a hamiltonian cycle so that pointer chasing will touch the full
     //working set.
 
-    num_pointers = length / 64;
-    num_blocks = num_pointers / num_entries / 8; // (4096 * 8 * 8)
+    num_pointers = length / 8;
+    num_blocks = num_pointers / num_entries * 8; // (4096 * 8 * 8)
+    num_blocks = length / (4096 * 64);
     // num_entries should be divided 8 because of 64 byte cacheline
 
     //Represent traversal order of pointers in an array external to the
@@ -1068,7 +1069,7 @@ bool xmem::build_random_pointer_permutation(void* start_address, void* end_addre
 #ifdef HAS_WORD_64
         case CHUNK_64b:
             for (size_t b = 0; b < num_blocks; b++) {
-                mem_region_base = reinterpret_cast<Word64_t*>(reinterpret_cast<Word64_t*>(start_address) + (num_entries * b));
+                mem_region_base = reinterpret_cast<Word64_t*>(reinterpret_cast<Word64_t*>(start_address) + (num_entries * b / 8));
                 // std::cout << const_cast<uintptr_t*>(mem_region_base) << std::endl;
                 for (size_t i = 0; i < rand_num; i++) {
                     mem_region_base[traversal_order[i]*8] = reinterpret_cast<Word64_t>(
@@ -1214,12 +1215,14 @@ int32_t xmem::chaseRandPointers(uintptr_t* first_address, uintptr_t** last_touch
         if (temp == const_cast<uintptr_t*>(p))
             break;
     }
-    // std::cout << "last " << const_cast<uintptr_t*>(p + 32768) << std::endl;
-    // std::cout << "base+len " << const_cast<uintptr_t*>(base_address + (len/64/8)) << std::endl;
+    // std::cout << "last1 " << const_cast<uintptr_t*>(p + 32768) << std::endl;
     *last_touched_address = const_cast<uintptr_t*>(p + 32768);
     // std::cout << "base " << const_cast<uintptr_t*>(base_address) << std::endl;
-    if (const_cast<uintptr_t*>(base_address + len) <= const_cast<uintptr_t*>(p + 32768))
+    // std::cout << "base+len " << const_cast<uintptr_t*>(base_address + len) << std::endl;
+    if (const_cast<uintptr_t*>(base_address + len) <= const_cast<uintptr_t*>(p + 32768)) {
+        // std::cout << "base! " << const_cast<uintptr_t*>(base_address) << std::endl;
         *last_touched_address = const_cast<uintptr_t*>(base_address);
+    }
     return 0;
 }
 

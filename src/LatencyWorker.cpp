@@ -187,7 +187,7 @@ void LatencyWorker::run() {
 
     // target_ticks now should be changed to measure a big memory size
     // if ((len >= 2 * GiB) && (use_sequential_kernel_fptr == SEQUENTIAL)) {
-    if ((len >= 64 * GiB)) {
+    if ((len >= 2 * GiB)) {
         target_ticks = UINT64_MAX;
         full_touch = true;
     }
@@ -219,11 +219,11 @@ void LatencyWorker::run() {
                 break;
         } else if (use_sequential_kernel_fptr == RANDOM) {
             start_tick = start_timer();
-            (*chase_fptr)(next_address, &next_address, len/64/8, base_address, &offset);
+            (*chase_fptr)(next_address, &next_address, len/8, base_address, &offset);
             stop_tick = stop_timer();
             elapsed_ticks += (stop_tick - start_tick);
             passes += 4096;
-            if ((full_touch == true) && (len <= passes * 64 * 64))
+            if ((full_touch == true) && (len <= passes * 64))
                 break;
         }
     }
