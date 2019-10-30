@@ -307,6 +307,13 @@ bool BenchmarkManager::runThroughputBenchmarks() {
             results_file_ << "" << ",";
             results_file_ << std::endl;
         }
+
+        if (config_.usePerfFile()) {
+            for (uint32_t j = 0; j < NUM_COUNTERS; j++) {
+                perf_results_file_ << tp_benchmarks_[i]->getPerfStat(j) / tp_benchmarks_[i]->getIterations() << ";";
+            }
+            perf_results_file_ << std::endl;
+        }
     }
 
     if (g_verbose)

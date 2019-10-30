@@ -332,6 +332,7 @@ namespace xmem {
         std::vector<double> mean_dram_power_socket_; /**< The mean DRAM power in this benchmark, per socket. */
         std::vector<double> peak_dram_power_socket_; /**< The peak DRAM power in this benchmark, per socket. */
         std::vector<uint64_t> perf_stat_;
+        // std::vector< vector<uint64_t> > perf_stat_iter_;
 
         //Metadata
         std::string name_; /**< Name of this benchmark. */

@@ -136,7 +136,6 @@ void LoadWorker::run() {
     uint64_t p = 0;
     bool full_touch = false;
     bytes_per_pass = THROUGHPUT_BENCHMARK_BYTES_PER_PASS;
-    // bytes_per_pass = 64;
 
     // AHN: perf related data structures
     struct perf_event_attr pe[NUM_COUNTERS];
@@ -152,15 +151,27 @@ void LoadWorker::run() {
         pe[i].exclude_kernel = 0;
         pe[i].exclude_hv = 1;
 
-        if ( i == LOCAL_DRAM_ACCESS ) {
-            pe[i].config = 0x1d3;
-        } else if ( i == LOCAL_PMM_ACCESS ) {
-            pe[i].config = 0x80d1;
-        } else if ( i == REMOTE_DRAM_ACCESS ) {
-            pe[i].config = 0x2d3;
-        } else if ( i == REMOTE_PMM_ACCESS ) {
-            pe[i].config = 0x10d3;
+        switch (i) {
+            case LOCAL_DRAM_ACCESS:
+                pe[i].config = 0x1d3;
+                break;
+            case LOCAL_PMM_ACCESS:
+                pe[i].config = 0x80d1;
+                break;
+            case REMOTE_DRAM_ACCESS:
+                pe[i].config = 0x2d3;
+                break;
+            case REMOTE_PMM_ACCESS:
+                pe[i].config = 0x10d3;
+                break;
+            case WPQ_OCCUPANCY:
+                pe[i].config = 0x1E4;
+                break;
+            case RPQ_OCCUPANCY:
+                pe[i].config = 0x1E0;
+                break;
         }
+
     }
 
     for (uint32_t i = 0; i < NUM_COUNTERS; i++) {
@@ -188,6 +199,9 @@ void LoadWorker::run() {
         prime_end_address = reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array_) + len_);
         releaseLock();
     }
+
+    if (use_sequential_kernel_fptr == false)
+        bytes_per_pass = 64;
     
     //Set processor affinity
     bool locked = lock_thread_to_cpu(cpu_affinity);
@@ -205,11 +219,13 @@ void LoadWorker::run() {
 #endif
         std::cerr << "WARNING: Failed to boost scheduling priority. Perhaps running in Administrator mode would help." << std::endl;
 
+    /*
     if ((len >= 2*GiB)) {
-        target_ticks = UINT64_MAX;
-        full_touch = true;
     }
-    std::cout << "target_ticks " << target_ticks << std::endl;
+    */
+    // target_ticks = UINT64_MAX;
+    full_touch = true;
+    // std::cout << "target_ticks " << target_ticks << std::endl;
 
     //Prime memory
     for (uint32_t i = 0; i < 4; i++) {
@@ -225,25 +241,43 @@ void LoadWorker::run() {
     //Run the benchmark!
     uintptr_t* next_address = static_cast<uintptr_t*>(mem_array);
     //Run actual version of function and loop overhead
-    while (elapsed_ticks < target_ticks) {
+    // while (elapsed_ticks < target_ticks) {
+    while (1) {
         if (use_sequential_kernel_fptr) { //sequential function semantics
             start_tick = start_timer();
-            UNROLL1024((*kernel_fptr_seq)(start_address, end_address);
-            start_address = reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array)+(reinterpret_cast<uintptr_t>(start_address)+bytes_per_pass) % len);
-            end_address = reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(start_address) + bytes_per_pass);
-            )
+            (*kernel_fptr_seq)(start_address, end_address);
+                    end_address = reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(end_address) + (bytes_per_pass));
+                    start_address = reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(start_address) + (bytes_per_pass));
+                    // start_address = reinterpret_cast<void*>(
+                    //                              reinterpret_cast<uint8_t*>(mem_array)
+                    //                                +  (reinterpret_cast<uintptr_t>(start_address) + bytes_per_pass) % len);
+                    // end_address = reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(start_address) + bytes_per_pass);
+                    // std::cout << "start " << start_address << std::endl;
+                    // std::cout << "end   " << end_address << std::endl;
             stop_tick = stop_timer();
 
-            passes+=1024;
-            if ((full_touch == true) && 
-                    (start_address ==  reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array)))) {
+            passes+=1;
+            // std::cout << "based   " << mem_array << std::endl;
+            // std::cout << "based+len   " << mem_array + len<< std::endl;
+            if ((full_touch == true) &&
+                    (start_address ==  (mem_array + len))) {
+                std::cout << "base " << mem_array << std::endl;
+                std::cout << "base+len " << mem_array + len << std::endl;
                 break;
             }
+            if (passes * 4096 >= len)
+                break;
         } else { //random function semantics
             start_tick = start_timer();
-            UNROLL1024((*kernel_fptr_ran)(next_address, &next_address, bytes_per_pass);)
+            (*kernel_fptr_ran)(next_address, &next_address, bytes_per_pass);
             stop_tick = stop_timer();
-            passes+=1024;
+            passes+=1;
+
+            if (next_address ==  reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array))) {
+                next_address = static_cast<uintptr_t*>(mem_array);
+            }
+            if ((full_touch == true) && (len <= passes * 64))
+                break;
         }
         elapsed_ticks += (stop_tick - start_tick);
     }
@@ -266,18 +300,16 @@ void LoadWorker::run() {
     while (p < passes) {
         if (use_sequential_kernel_fptr) { //sequential function semantics
             start_tick = start_timer();
-            UNROLL1024(
                 (*kernel_dummy_fptr_seq)(start_address, end_address);
                 start_address = reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array)+(reinterpret_cast<uintptr_t>(start_address)+bytes_per_pass) % len);
                 end_address = reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(start_address) + bytes_per_pass);
-            )
             stop_tick = stop_timer();
-            p+=1024;
+            p+=1;
         } else { //random function semantics
             start_tick = start_timer();
-            UNROLL1024((*kernel_dummy_fptr_ran)(next_address, &next_address, bytes_per_pass);)
+            (*kernel_dummy_fptr_ran)(next_address, &next_address, bytes_per_pass);
             stop_tick = stop_timer();
-            p+=1024;
+            p+=1;
         }
 
         elapsed_dummy_ticks += (stop_tick - start_tick);

@@ -144,11 +144,9 @@ function run() {
         # Run
         clean
         sleep 10
-        sudo numactl $policy_option -N 0 -- $XMEM_DIR/bin/xmem-linux-x64 $bench_type $mode $pattern -v -n $NUM_ITER -w${wss} -j${NUM_THREADS} -f ${XMEM_TEMP}.csv -p ${PERF_TEMP} >> ${XMEM_TEMP}.txt 2>&1
-
-        cat $PERF_TEMP | awk -F';' -v wss=$wss '{print wss ";" $0}' >> $LOG_DIR/$title-perf.log
-        cat $XMEM_TEMP.csv | tail -n 1 | awk -F ',' '{print $3 " " $22 " " $12}' >> $LOG_DIR/$title.log
-
+        sudo numactl $policy_option -N 0 -- $XMEM_DIR/bin/xmem-linux-x64 $bench_type $mode $pattern -v -n ${NUM_ITER} -w${wss} -j${NUM_THREADS} -f ${XMEM_TEMP}.csv -p ${PERF_TEMP} >> ${XMEM_TEMP}.txt 2>&1
+        cat ${PERF_TEMP} | awk -F';' -v wss=$wss '{print wss ";" $0}' >> $LOG_DIR/$title-perf.log
+        cat ${XMEM_TEMP}.csv | tail -n 1 | awk -F ',' '{print $3 " " $22 " " $12}' >> $LOG_DIR/$title.log
         sleep 10
     done
 }

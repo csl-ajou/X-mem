@@ -179,16 +179,26 @@ bool ThroughputBenchmark::runCore() {
         }
 
         for (uint32_t i = 0; i < NUM_COUNTERS; i++) {
-            if ( i == LOCAL_DRAM_ACCESS ) {
-                std::cout << "LOCAL_DRAM_ACCESS: ";
-            } else if ( i == LOCAL_PMM_ACCESS ) {
-                std::cout << "LOCAL_PMM_ACCESS: ";
-            } else if ( i == REMOTE_DRAM_ACCESS ) {
-                std::cout << "REMOTE_DRAM_ACCESS: ";
-            } else if ( i == REMOTE_PMM_ACCESS ) {
-                std::cout << "REMOTE_PMM_ACCESS: ";
+            switch (i) {
+                case LOCAL_DRAM_ACCESS:
+                    std::cout << "LOCAL_DRAM_ACCESS: ";
+                    break;
+                case LOCAL_PMM_ACCESS:
+                    std::cout << "LOCAL_PMM_ACCESS: ";
+                    break;
+                case REMOTE_DRAM_ACCESS:
+                    std::cout << "REMOTE_DRAM_ACCESS: ";
+                    break;
+                case REMOTE_PMM_ACCESS:
+                    std::cout << "REMOTE_PMM_ACCESS: ";
+                    break;
+                case WPQ_OCCUPANCY:
+                    std::cout << "WPQ_OCCUPANCY: ";
+                    break;
+                case RPQ_OCCUPANCY:
+                    std::cout << "RPQ_OCCUPANCY: ";
+                    break;
             }
-
             std::cout << perf_stat_[i] << std::endl;
         }
 
@@ -217,7 +227,6 @@ bool ThroughputBenchmark::runCore() {
         
         //Compute metric for this iteration
         metric_on_iter_[i] = ((static_cast<double>(total_passes) * static_cast<double>(bytes_per_pass)) / static_cast<double>(MB))   /   ((static_cast<double>(avg_adjusted_ticks) * g_ns_per_tick) / 1e9);
-
         //Clean up workers and threads for this iteration
         for (uint32_t t = 0; t < num_worker_threads_; t++) {
             delete worker_threads[t];

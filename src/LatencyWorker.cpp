@@ -129,15 +129,27 @@ void LatencyWorker::run() {
         pe[i].exclude_kernel = 0;
         pe[i].exclude_hv = 1;
 
-        if ( i == LOCAL_DRAM_ACCESS ) {
-            pe[i].config = 0x1d3;
-        } else if ( i == LOCAL_PMM_ACCESS ) {
-            pe[i].config = 0x80d1;
-        } else if ( i == REMOTE_DRAM_ACCESS ) {
-            pe[i].config = 0x2d3;
-        } else if ( i == REMOTE_PMM_ACCESS ) {
-            pe[i].config = 0x10d3;
+        switch (i) {
+            case LOCAL_DRAM_ACCESS:
+                pe[i].config = 0x1d3;
+                break;
+            case LOCAL_PMM_ACCESS:
+                pe[i].config = 0x80d1;
+                break;
+            case REMOTE_DRAM_ACCESS:
+                pe[i].config = 0x2d3;
+                break;
+            case REMOTE_PMM_ACCESS:
+                pe[i].config = 0x10d3;
+                break;
+            case WPQ_OCCUPANCY:
+                pe[i].config = 0x1E4;
+                break;
+            case RPQ_OCCUPANCY:
+                pe[i].config = 0x1E0;
+                break;
         }
+
     }
 
     for (uint32_t i = 0; i < NUM_COUNTERS; i++) {
@@ -217,6 +229,8 @@ void LatencyWorker::run() {
             passes += 256;
             if ((full_touch == true) && (next_address == static_cast<uintptr_t*>(mem_array)))
                 break;
+            if (passes * 64 >= len)
+                break;
         } else if (use_sequential_kernel_fptr == RANDOM) {
             start_tick = start_timer();
             (*chase_fptr)(next_address, &next_address, len/8, base_address, &offset);
@@ -234,14 +248,25 @@ void LatencyWorker::run() {
 	    ioctl(perf_fd[i], PERF_EVENT_IOC_DISABLE, 0);
 	    read(perf_fd[i], &perf_count[i], sizeof(long long));
 
-        if ( i == LOCAL_DRAM_ACCESS ) {
-            std::cout << "LOCAL_DRAM_ACCESS: ";
-        } else if ( i == LOCAL_PMM_ACCESS ) {
-            std::cout << "LOCAL_PMM_ACCESS: ";
-        } else if ( i == REMOTE_DRAM_ACCESS ) {
-            std::cout << "REMOTE_DRAM_ACCESS: ";
-        } else if ( i == REMOTE_PMM_ACCESS ) {
-            std::cout << "REMOTE_PMM_ACCESS: ";
+        switch (i) {
+            case LOCAL_DRAM_ACCESS:
+                std::cout << "LOCAL_DRAM_ACCESS: ";
+                break;
+            case LOCAL_PMM_ACCESS:
+                std::cout << "LOCAL_PMM_ACCESS: ";
+                break;
+            case REMOTE_DRAM_ACCESS:
+                std::cout << "REMOTE_DRAM_ACCESS: ";
+                break;
+            case REMOTE_PMM_ACCESS:
+                std::cout << "REMOTE_PMM_ACCESS: ";
+                break;
+            case WPQ_OCCUPANCY:
+                std::cout << "WPQ_OCCUPANCY: ";
+                break;
+            case RPQ_OCCUPANCY:
+                std::cout << "RPQ_OCCUPANCY: ";
+                break;
         }
 
         std::cout << perf_count[i] << std::endl;

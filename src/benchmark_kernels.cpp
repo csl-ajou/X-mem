@@ -2197,7 +2197,9 @@ int32_t xmem::forwSequentialRead_Word64(void* start_address, void* end_address) 
     register Word64_t val;
     // volatile Word64_t* wordptr = static_cast<Word64_t*>(start_address);
     for (volatile Word64_t* wordptr = static_cast<Word64_t*>(start_address), *endptr = static_cast<Word64_t*>(end_address); wordptr < endptr;) {
-        UNROLL64(wordptr = wordptr + 8; val = *wordptr;)
+        UNROLL64(val = *wordptr;
+                // std::cout << "wordptr " << reinterpret_cast<uintptr_t>(wordptr) << std::endl;
+                wordptr = wordptr + 8;)
     }
     // wordptr = wordptr + 8; val = *wordptr;
     return 0;
@@ -2336,7 +2338,8 @@ int32_t xmem::forwSequentialWrite_Word32(void* start_address, void* end_address)
 int32_t xmem::forwSequentialWrite_Word64(void* start_address, void* end_address) {
     register Word64_t val = 0xFFFFFFFFFFFFFFFF; 
     for (volatile Word64_t* wordptr = static_cast<Word64_t*>(start_address), *endptr = static_cast<Word64_t*>(end_address); wordptr < endptr;) {
-        UNROLL512(*wordptr++ = val;) 
+        UNROLL64(wordptr = wordptr + 8; *wordptr = val;)
+        // UNROLL512(*wordptr++ = val;)
     }
     return 0;
 }
@@ -3924,9 +3927,15 @@ int32_t xmem::randomRead_Word32(uintptr_t* first_address, uintptr_t** last_touch
 #ifdef HAS_WORD_64
 int32_t xmem::randomRead_Word64(uintptr_t* first_address, uintptr_t** last_touched_address, size_t len) {
     volatile uintptr_t* p = first_address;
-
-    UNROLL512(p = reinterpret_cast<uintptr_t*>(*p);)
-    *last_touched_address = const_cast<uintptr_t*>(p);
+    uintptr_t *temp = const_cast<uintptr_t*>(p);
+    // std::cout << "temp " << const_cast<uintptr_t*>(p) << std::endl;
+    while (1) {
+        p = reinterpret_cast<uintptr_t*>(*(p));
+        if (temp == const_cast<uintptr_t*>(p))
+            break;
+    }
+    // UNROLL512(p = reinterpret_cast<uintptr_t*>(*p);)
+    *last_touched_address = const_cast<uintptr_t*>(p + 32768);
     return 0;
 }
 #endif

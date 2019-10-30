@@ -464,6 +464,8 @@ namespace xmem {
         LOCAL_PMM_ACCESS,
         REMOTE_DRAM_ACCESS,
         REMOTE_PMM_ACCESS,
+        WPQ_OCCUPANCY,
+        RPQ_OCCUPANCY,
         NUM_COUNTERS
     } perf_stat_t;
 
