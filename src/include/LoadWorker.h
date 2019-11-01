@@ -56,7 +56,8 @@ namespace xmem {
                 size_t len,
                 SequentialFunction kernel_fptr,
                 SequentialFunction kernel_dummy_fptr,
-                int32_t cpu_affinity
+                int32_t cpu_affinity,
+                pthread_barrier_t *barrier
             );
             
             /** 
@@ -72,7 +73,8 @@ namespace xmem {
                 size_t len,
                 RandomFunction kernel_fptr,
                 RandomFunction kernel_dummy_fptr,
-                int32_t cpu_affinity
+                int32_t cpu_affinity,
+                pthread_barrier_t *barrier
             );
             
             /**
@@ -92,6 +94,7 @@ namespace xmem {
             SequentialFunction kernel_dummy_fptr_seq_; /**< Points to a dummy version of the memory test core routine to use of the "sequential" type. */
             RandomFunction kernel_fptr_ran_; /**< Points to the memory test core routine to use of the "random" type. */
             RandomFunction kernel_dummy_fptr_ran_; /**< Points to a dummy version of the memory test core routine to use of the "random" type. */
+            pthread_barrier_t *barrier_;
     };
 };
 

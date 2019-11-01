@@ -40,6 +40,10 @@
 #include <assert.h>
 #include <time.h>
 
+#ifdef __gnu_linux__
+#include <pthread.h>
+#endif
+
 using namespace xmem;
 
 ThroughputBenchmark::ThroughputBenchmark(
@@ -76,6 +80,9 @@ ThroughputBenchmark::ThroughputBenchmark(
 
 bool ThroughputBenchmark::runCore() {
     size_t len_per_thread = len_ / num_worker_threads_; //Carve up memory space so each worker has its own area to play in
+    pthread_barrier_t barrier;
+
+    pthread_barrier_init(&barrier, NULL, num_worker_threads_);
 
     //Set up kernel function pointers
     SequentialFunction kernel_fptr_seq = NULL;
@@ -139,13 +146,13 @@ bool ThroughputBenchmark::runCore() {
                                                  len_per_thread,
                                                  kernel_fptr_seq,
                                                  kernel_dummy_fptr_seq,
-                                                 cpu_id));
+                                                 cpu_id, &barrier));
             else if (pattern_mode_ == RANDOM)
                 workers.push_back(new LoadWorker(threadmem_array_,
                                                  len_per_thread,
                                                  kernel_fptr_ran,
                                                  kernel_dummy_fptr_ran,
-                                                 cpu_id));
+                                                 cpu_id, &barrier));
             else
                 std::cerr << "WARNING: Invalid benchmark pattern mode." << std::endl;
             worker_threads.push_back(new Thread(workers[t]));
@@ -201,6 +208,7 @@ bool ThroughputBenchmark::runCore() {
             }
             std::cout << perf_stat_[i] << std::endl;
         }
+
 
         avg_adjusted_ticks = total_adjusted_ticks / num_worker_threads_;
 

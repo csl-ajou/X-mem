@@ -402,7 +402,7 @@ bool DelayInjectedLoadedLatencyBenchmark::runCore() {
                                                  len_per_thread,
                                                  load_kernel_fptr,
                                                  load_kernel_dummy_fptr,
-                                                 cpu_id));
+                                                 cpu_id, NULL));
             }
             worker_threads.push_back(new Thread(workers[t]));
         }

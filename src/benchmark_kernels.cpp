@@ -3931,10 +3931,12 @@ int32_t xmem::randomRead_Word64(uintptr_t* first_address, uintptr_t** last_touch
     // std::cout << "temp " << const_cast<uintptr_t*>(p) << std::endl;
     while (1) {
         p = reinterpret_cast<uintptr_t*>(*(p));
+
         if (temp == const_cast<uintptr_t*>(p))
             break;
     }
     // UNROLL512(p = reinterpret_cast<uintptr_t*>(*p);)
+    // std::cout << "last " << const_cast<uintptr_t*>(p+32768) << std::endl;
     *last_touched_address = const_cast<uintptr_t*>(p + 32768);
     return 0;
 }
@@ -4022,9 +4024,26 @@ int32_t xmem::randomWrite_Word32(uintptr_t* first_address, uintptr_t** last_touc
 int32_t xmem::randomWrite_Word64(uintptr_t* first_address, uintptr_t** last_touched_address, size_t len) {
     volatile uintptr_t* p = first_address;
     volatile uintptr_t* p2 = NULL;
+    uintptr_t *temp = const_cast<uintptr_t*>(p);
 
+    /*
     UNROLL512(p2 = reinterpret_cast<uintptr_t*>(*p); *p = reinterpret_cast<uintptr_t>(p2); p = p2;)
     *last_touched_address = const_cast<uintptr_t*>(p);
+    return 0;
+    */
+
+    // std::cout << "temp " << const_cast<uintptr_t*>(p) << std::endl;
+    while (1) {
+        p2 = reinterpret_cast<uintptr_t*>(*p);
+        *p = reinterpret_cast<uintptr_t>(p2);
+        p = p2;
+
+        if (temp == const_cast<uintptr_t*>(p))
+            break;
+    }
+    // UNROLL512(p = reinterpret_cast<uintptr_t*>(*p);)
+    // std::cout << "last " << const_cast<uintptr_t*>(p+32768) << std::endl;
+    *last_touched_address = const_cast<uintptr_t*>(p + 32768);
     return 0;
 }
 #endif

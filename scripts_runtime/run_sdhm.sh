@@ -9,7 +9,7 @@ ARGC=$#
 XMEM_DIR=$HOME/research/sdhm/benchmark/X-Mem
 DATE=$(date +%Y%m%d-%H%M%S)
 ARR_WSS_KB=()
-NUM_THREADS=1
+NUM_THREADS=16
 
 script_path=$xmem_path/scripts_runtime
 
@@ -67,12 +67,14 @@ function prepare() {
     # Set CPU freq at max
     f_max_freq=$HOME/scripts/set_max_freq.sh
     f_prefetch=$HOME/scripts/prefetchers.sh
+    f_turbo=$HOME/scripts/turbo-boost.sh
     if [ ! -f $f_max_freq  ] | [ ! -f $f_prefetch ]; then
         echo "There are no those files. Contact with Superv"
         exit 1
     fi
     sudo bash $f_max_freq
     sudo bash $f_prefetch disable &> /dev/null
+    sudo bash $f_turbo disable &> /dev/null
 
     # No Randomization
     echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
@@ -191,10 +193,14 @@ fi
 
 LOG_DIR=${XMEM_DIR}/logs/${MEM_TYPE}-${DATE}
 ARR_WSS_KB=($((16*$GiB)) $((32*$GiB)) $((64*$GiB)) $((128*$GiB)) $((256*$GiB)) $((384*$GiB)))
+ARR_WSS_KB=($((1*$GiB)) $((2*$GiB)) $((4*$GiB)) $((8*$GiB)) $((16*$GiB)) $((24*$GiB)))
 prepare
 
 # run "seq" "read" "latency"
 # run "seq" "write" "latency"
-run "rand" "read" "latency"
+# run "rand" "read" "latency"
 # run "rand" "write" "latency"
+# run "seq" "read" "throughput"
+run "rand" "read" "throughput"
+# run "seq" "write" "throughput"
 end

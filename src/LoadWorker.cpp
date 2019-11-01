@@ -51,7 +51,6 @@
 #endif
 
 #define GiB (1024*1024*1024UL)
-
 /*
  * AHN: perf measurement
  */
@@ -72,7 +71,8 @@ LoadWorker::LoadWorker(
         size_t len,
         SequentialFunction kernel_fptr,
         SequentialFunction kernel_dummy_fptr,
-        int32_t cpu_affinity
+        int32_t cpu_affinity,
+        pthread_barrier_t *barrier
     ) :
         MemoryWorker(
             mem_array,
@@ -83,7 +83,8 @@ LoadWorker::LoadWorker(
         kernel_fptr_seq_(kernel_fptr),
         kernel_dummy_fptr_seq_(kernel_dummy_fptr),
         kernel_fptr_ran_(NULL),
-        kernel_dummy_fptr_ran_(NULL)
+        kernel_dummy_fptr_ran_(NULL),
+        barrier_(barrier)
     {
 }
 
@@ -92,7 +93,8 @@ LoadWorker::LoadWorker(
         size_t len,
         RandomFunction kernel_fptr,
         RandomFunction kernel_dummy_fptr,
-        int32_t cpu_affinity
+        int32_t cpu_affinity,
+        pthread_barrier_t *barrier
     ) :
         MemoryWorker(
             mem_array,
@@ -103,7 +105,8 @@ LoadWorker::LoadWorker(
         kernel_fptr_seq_(NULL),
         kernel_dummy_fptr_seq_(NULL),
         kernel_fptr_ran_(kernel_fptr),
-        kernel_dummy_fptr_ran_(kernel_dummy_fptr)
+        kernel_dummy_fptr_ran_(kernel_dummy_fptr),
+        barrier_(barrier)
     {
 }
 
@@ -136,6 +139,26 @@ void LoadWorker::run() {
     uint64_t p = 0;
     bool full_touch = false;
     bytes_per_pass = THROUGHPUT_BENCHMARK_BYTES_PER_PASS;
+
+    //Grab relevant setup state thread-safely and keep it local
+    if (acquireLock(-1)) {
+      mem_array = mem_array_;
+      len = len_;
+      cpu_affinity = cpu_affinity_;
+      use_sequential_kernel_fptr = use_sequential_kernel_fptr_;
+      kernel_fptr_seq = kernel_fptr_seq_;
+      kernel_dummy_fptr_seq = kernel_dummy_fptr_seq_;
+      kernel_fptr_ran = kernel_fptr_ran_;
+      kernel_dummy_fptr_ran = kernel_dummy_fptr_ran_;
+      start_address = mem_array_;
+      end_address = reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array_)+bytes_per_pass);
+      prime_start_address = mem_array_; 
+      prime_end_address = reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array_) + ((len_) / 2));
+      releaseLock();
+    }
+
+    if (use_sequential_kernel_fptr == false)
+        bytes_per_pass = 64;
 
     // AHN: perf related data structures
     struct perf_event_attr pe[NUM_COUNTERS];
@@ -182,26 +205,7 @@ void LoadWorker::run() {
             exit(EXIT_FAILURE);
         }
     }
-    
-    //Grab relevant setup state thread-safely and keep it local
-    if (acquireLock(-1)) {
-        mem_array = mem_array_;
-        len = len_;
-        cpu_affinity = cpu_affinity_;
-        use_sequential_kernel_fptr = use_sequential_kernel_fptr_;
-        kernel_fptr_seq = kernel_fptr_seq_;
-        kernel_dummy_fptr_seq = kernel_dummy_fptr_seq_;
-        kernel_fptr_ran = kernel_fptr_ran_;
-        kernel_dummy_fptr_ran = kernel_dummy_fptr_ran_;
-        start_address = mem_array_;
-        end_address = reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array_)+bytes_per_pass);
-        prime_start_address = mem_array_; 
-        prime_end_address = reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array_) + len_);
-        releaseLock();
-    }
 
-    if (use_sequential_kernel_fptr == false)
-        bytes_per_pass = 64;
     
     //Set processor affinity
     bool locked = lock_thread_to_cpu(cpu_affinity);
@@ -219,16 +223,21 @@ void LoadWorker::run() {
 #endif
         std::cerr << "WARNING: Failed to boost scheduling priority. Perhaps running in Administrator mode would help." << std::endl;
 
-    /*
-    if ((len >= 2*GiB)) {
-    }
-    */
-    // target_ticks = UINT64_MAX;
     full_touch = true;
     // std::cout << "target_ticks " << target_ticks << std::endl;
 
     //Prime memory
-    for (uint32_t i = 0; i < 4; i++) {
+    for (uint32_t i = 0; i < 1; i++) {
+        forwSequentialRead_Word32(prime_start_address, prime_end_address); //dependent reads on the memory, make sure caches are ready, coherence, etc...
+    }
+
+    prime_start_address = reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(prime_end_address));
+    prime_end_address = reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array_) + (len_));
+
+    std::cout << "Thread " << cpu_affinity << " is warming up..." << std::endl;
+    pthread_barrier_wait(barrier_);
+
+    for (uint32_t i = 0; i < 1; i++) {
         forwSequentialRead_Word32(prime_start_address, prime_end_address); //dependent reads on the memory, make sure caches are ready, coherence, etc...
     }
 
@@ -238,6 +247,8 @@ void LoadWorker::run() {
         ioctl(perf_fd[i], PERF_EVENT_IOC_ENABLE, 0);
     }
 
+    std::cout << "Thread " << cpu_affinity << " is waiting..." << std::endl;
+    pthread_barrier_wait(barrier_);
     //Run the benchmark!
     uintptr_t* next_address = static_cast<uintptr_t*>(mem_array);
     //Run actual version of function and loop overhead
@@ -261,8 +272,8 @@ void LoadWorker::run() {
             // std::cout << "based+len   " << mem_array + len<< std::endl;
             if ((full_touch == true) &&
                     (start_address ==  (mem_array + len))) {
-                std::cout << "base " << mem_array << std::endl;
-                std::cout << "base+len " << mem_array + len << std::endl;
+                std::cout << cpu_affinity << "] " << "base " << mem_array << std::endl;
+                std::cout << cpu_affinity << "] " << "base+len " << mem_array + len << std::endl;
                 break;
             }
             if (passes * 4096 >= len)
@@ -271,12 +282,16 @@ void LoadWorker::run() {
             start_tick = start_timer();
             (*kernel_fptr_ran)(next_address, &next_address, bytes_per_pass);
             stop_tick = stop_timer();
-            passes+=1;
+            passes+=4096;
 
-            if (next_address ==  reinterpret_cast<void*>(reinterpret_cast<uint8_t*>(mem_array))) {
+            // std::cout << cpu_affinity << "] " << "next " << next_address << std::endl;
+            if (next_address == reinterpret_cast<uintptr_t*>(mem_array + (len))) {
+                std::cout << cpu_affinity << "] " << "next " << mem_array+len << std::endl;
+                std::cout << cpu_affinity << "] " << "base " << mem_array << std::endl;
                 next_address = static_cast<uintptr_t*>(mem_array);
+                break;
             }
-            if ((full_touch == true) && (len <= passes * 64))
+            if ((full_touch == true) && (passes * 64 >= len))
                 break;
         }
         elapsed_ticks += (stop_tick - start_tick);
@@ -307,9 +322,9 @@ void LoadWorker::run() {
             p+=1;
         } else { //random function semantics
             start_tick = start_timer();
-            (*kernel_dummy_fptr_ran)(next_address, &next_address, bytes_per_pass);
+            UNROLL256((*kernel_dummy_fptr_ran)(next_address, &next_address, bytes_per_pass);)
             stop_tick = stop_timer();
-            p+=1;
+            p+=256;
         }
 
         elapsed_dummy_ticks += (stop_tick - start_tick);
@@ -329,6 +344,7 @@ void LoadWorker::run() {
         std::cerr << "WARNING: Failed to revert scheduling priority. Perhaps running in Administrator mode would help." << std::endl;
 
     adjusted_ticks = elapsed_ticks - elapsed_dummy_ticks;
+    std::cout << cpu_affinity << ": " << adjusted_ticks << std::endl; 
 
     //Warn if something looks fishy
     if (elapsed_dummy_ticks >= elapsed_ticks || elapsed_ticks < MIN_ELAPSED_TICKS || adjusted_ticks < 0.5 * elapsed_ticks)
@@ -343,8 +359,10 @@ void LoadWorker::run() {
         bytes_per_pass_ = bytes_per_pass;
         completed_ = true;
         passes_ = passes;
-        for (uint32_t i = 0; i < NUM_COUNTERS; i++)
+        for (uint32_t i = 0; i < NUM_COUNTERS; i++) {
             event_stat_[i] = perf_count[i];
+            // std::cout << cpu_affinity << ": " << perf_count[i] << std::endl; 
+        }
         releaseLock();
     }
 }

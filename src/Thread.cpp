@@ -66,7 +66,6 @@ Thread::~Thread() {
         std::cerr << "WARNING: Failed to forcefully kill a thread!" << std::endl;
 }
 
-
 bool Thread::create_and_start() {
 #ifdef _WIN32
     if (create())

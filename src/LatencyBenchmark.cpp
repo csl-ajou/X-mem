@@ -390,13 +390,13 @@ bool LatencyBenchmark::runCore() {
                                                      len_per_thread,
                                                      load_kernel_fptr_seq,
                                                      load_kernel_dummy_fptr_seq,
-                                                     cpu_id));
+                                                     cpu_id, NULL));
                 else if (pattern_mode_ == RANDOM)
                     workers.push_back(new LoadWorker(thread_mem_array,
                                                      len_per_thread,
                                                      load_kernel_fptr_ran,
                                                      load_kernel_dummy_fptr_ran,
-                                                     cpu_id));
+                                                     cpu_id, NULL));
                 else
                     std::cerr << "WARNING: Invalid benchmark pattern mode." << std::endl;
             }
